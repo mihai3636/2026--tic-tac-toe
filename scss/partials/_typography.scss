@@ -1,0 +1,50 @@
+@use "utils" as *;
+@use "variables" as *;
+
+// TEXT PRESETS
+
+.tp-1 {
+  font-size: var(--fs-1);
+  line-height: var(--lh-1);
+  letter-spacing: var(--ls-1);
+  font-weight: var(--fw-bold);
+}
+
+.tp-2 {
+  font-size: var(--fs-2);
+  line-height: var(--lh-1);
+  letter-spacing: var(--ls-2);
+  font-weight: var(--fw-bold);
+}
+
+.tp-3 {
+  font-size: var(--fs-3);
+  line-height: var(--lh-1);
+  letter-spacing: var(--ls-3);
+  font-weight: var(--fw-bold);
+}
+
+.tp-4 {
+  font-size: var(--fs-4);
+  line-height: var(--lh-1);
+  letter-spacing: var(--ls-4);
+  font-weight: var(--fw-bold);
+}
+
+.tp-5 {
+  font-size: var(--fs-5);
+  line-height: var(--lh-2);
+  letter-spacing: var(--ls-5);
+  font-weight: var(--fw-bold);
+
+  &--medium {
+    font-weight: var(--fw-medium);
+  }
+}
+
+.tp-6 {
+  font-size: var(--fs-6);
+  line-height: var(--lh-1);
+  letter-spacing: var(--ls-6);
+  font-weight: var(--fw-bold);
+}

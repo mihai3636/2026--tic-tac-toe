@@ -1,0 +1,64 @@
+@use "./utils" as *;
+
+:root {
+  --clr-primary: #f2b137;
+  --clr-primary-tint: #ffc860;
+
+  --clr-accent: #31c3bd;
+  --clr-accent-tint: #65e9e4;
+
+  --clr-primary-shade: #1b4133;
+
+  --clr-neutral-1: #fff;
+  --clr-neutral-2: #000;
+
+  --clr-grey-1: #dbe8ed;
+  --clr-grey-2: #a8bfc9;
+  --clr-grey-3: #1f3641;
+  --clr-grey-4: #21313b;
+  --clr-grey-5: #1a2a33;
+
+  --ff-main: "Inter";
+
+  --fw-medium: 500;
+  --fw-bold: 800;
+
+  // FONT SIZE
+  --fs-1: #{toRem(40px)};
+  --fs-2: #{toRem(24px)};
+  --fs-3: #{toRem(20px)};
+  --fs-4: #{toRem(16px)};
+  --fs-5: #{toRem(14px)};
+  --fs-6: #{toRem(12px)};
+
+  // LINE HEIGHT
+  --lh-1: 1.25;
+  --lh-2: 1.3;
+
+  // LETTER SPACING
+  --ls-1: 0.0625em;
+  --ls-2: 0.0625em;
+  --ls-3: 0.0625em;
+  --ls-4: 0.0625em;
+  --ls-5: 0.0643em;
+  --ls-6: 0.0625em;
+
+  // SPACING
+  --sp-0: #{toRem(0px)};
+  --sp-1: #{toRem(8px)};
+  --sp-2: #{toRem(12px)};
+  --sp-3: #{toRem(16px)};
+  --sp-4: #{toRem(20px)};
+  --sp-5: #{toRem(24px)};
+  --sp-6: #{toRem(30px)};
+  --sp-7: #{toRem(40px)};
+
+  // BORDER RADIUS
+  --br-0: 0;
+  --br-1: #{toRem(4px)};
+  --br-2: #{toRem(6px)};
+  --br-3: #{toRem(10px)};
+  --br-4: #{toRem(16px)};
+
+  --desktop-container-width: #{toRem(600px)};
+}

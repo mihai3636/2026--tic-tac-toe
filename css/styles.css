@@ -1,0 +1,124 @@
+:root {
+  --clr-primary: #f2b137;
+  --clr-primary-tint: #ffc860;
+  --clr-accent: #31c3bd;
+  --clr-accent-tint: #65e9e4;
+  --clr-primary-shade: #1b4133;
+  --clr-neutral-1: #fff;
+  --clr-neutral-2: #000;
+  --clr-grey-1: #dbe8ed;
+  --clr-grey-2: #a8bfc9;
+  --clr-grey-3: #1f3641;
+  --clr-grey-4: #21313b;
+  --clr-grey-5: #1a2a33;
+  --ff-main: "Inter";
+  --fw-medium: 500;
+  --fw-bold: 800;
+  --fs-1: 2.5rem;
+  --fs-2: 1.5rem;
+  --fs-3: 1.25rem;
+  --fs-4: 1rem;
+  --fs-5: 0.875rem;
+  --fs-6: 0.75rem;
+  --lh-1: 1.25;
+  --lh-2: 1.3;
+  --ls-1: 0.0625em;
+  --ls-2: 0.0625em;
+  --ls-3: 0.0625em;
+  --ls-4: 0.0625em;
+  --ls-5: 0.0643em;
+  --ls-6: 0.0625em;
+  --sp-0: 0rem;
+  --sp-1: 0.5rem;
+  --sp-2: 0.75rem;
+  --sp-3: 1rem;
+  --sp-4: 1.25rem;
+  --sp-5: 1.5rem;
+  --sp-6: 1.875rem;
+  --sp-7: 2.5rem;
+  --br-0: 0;
+  --br-1: 0.25rem;
+  --br-2: 0.375rem;
+  --br-3: 0.625rem;
+  --br-4: 1rem;
+  --desktop-container-width: 37.5rem;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+td,
+th,
+button {
+  font: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.tp-1 {
+  font-size: var(--fs-1);
+  line-height: var(--lh-1);
+  letter-spacing: var(--ls-1);
+  font-weight: var(--fw-bold);
+}
+
+.tp-2 {
+  font-size: var(--fs-2);
+  line-height: var(--lh-1);
+  letter-spacing: var(--ls-2);
+  font-weight: var(--fw-bold);
+}
+
+.tp-3 {
+  font-size: var(--fs-3);
+  line-height: var(--lh-1);
+  letter-spacing: var(--ls-3);
+  font-weight: var(--fw-bold);
+}
+
+.tp-4 {
+  font-size: var(--fs-4);
+  line-height: var(--lh-1);
+  letter-spacing: var(--ls-4);
+  font-weight: var(--fw-bold);
+}
+
+.tp-5 {
+  font-size: var(--fs-5);
+  line-height: var(--lh-2);
+  letter-spacing: var(--ls-5);
+  font-weight: var(--fw-bold);
+}
+.tp-5--medium {
+  font-weight: var(--fw-medium);
+}
+
+.tp-6 {
+  font-size: var(--fs-6);
+  line-height: var(--lh-1);
+  letter-spacing: var(--ls-6);
+  font-weight: var(--fw-bold);
+}
+
+body {
+  font-family: var(--ff-main), sans-serif;
+  font-size: var(--fs-4);
+  font-weight: var(--fw-normal);
+  line-height: 1.5;
+}
+
+/*# sourceMappingURL=styles.css.map */
