@@ -1,0 +1,9 @@
+@use "utils" as *;
+@use "variables" as *;
+
+body {
+  font-family: var(--ff-main), sans-serif;
+  font-size: var(--fs-4);
+  font-weight: var(--fw-normal);
+  line-height: 1.5;
+}
