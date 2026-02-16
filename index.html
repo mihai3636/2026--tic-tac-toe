@@ -16,10 +16,32 @@
     <title>Tic Tac Toe</title>
   </head>
   <body>
-    <main class="tp-1">
-      <h1 class="tp-5">12 34234 5 45</h1>
-      <p class="tp-6">Tralalala</p>
-      <p>no class</p>
+    <main>
+      <section>
+        <div class="container">
+          <article class="menu">
+            <img src="./assets/logo.svg" alt="tic tac toe logo" />
+            <div class="menu--pick-player">
+              <h2>PICK PLAYER 1'S MARK</h2>
+              <fieldset class="toggle">
+                <label>
+                  <input id="radioX" type="radio" name="playerMark" />
+                  <div class="shape">X</div>
+                </label>
+                <label>
+                  <input id="radioO" type="radio" name="playerMark" />
+                  <div class="shape">O</div>
+                </label>
+              </fieldset>
+              <p>Remember: X goes first</p>
+            </div>
+            <div class="menu--buttons">
+              <button><span>New Game (VS CPU)</span></button>
+              <button><span>New Game (VS PLAYER)</span></button>
+            </div>
+          </article>
+        </div>
+      </section>
     </main>
   </body>
 </html>
