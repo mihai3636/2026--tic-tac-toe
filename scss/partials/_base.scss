@@ -31,3 +31,10 @@ body {
 section {
   padding-inline: var(--sp-5);
 }
+
+.center-screen-vertically {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
