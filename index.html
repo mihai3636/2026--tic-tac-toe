@@ -11,33 +11,57 @@
       href="./assets/favicon-32x32.png"
     />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="./css/styles.css" />
 
     <title>Tic Tac Toe</title>
   </head>
   <body>
-    <main>
+    <main class="tp-3">
       <section>
         <div class="container">
-          <article class="menu">
-            <img src="./assets/logo.svg" alt="tic tac toe logo" />
-            <div class="menu--pick-player">
-              <h2>PICK PLAYER 1'S MARK</h2>
-              <fieldset class="toggle">
-                <label>
-                  <input id="radioX" type="radio" name="playerMark" />
-                  <div class="shape">X</div>
-                </label>
-                <label>
-                  <input id="radioO" type="radio" name="playerMark" />
-                  <div class="shape">O</div>
-                </label>
-              </fieldset>
-              <p>Remember: X goes first</p>
+          <article class="menu flow-content">
+            <img
+              class="menu__logo"
+              src="./assets/logo.svg"
+              alt="tic tac toe logo"
+            />
+
+            <div class="wrapper">
+              <div class="menu__pick-player flow-content">
+                <h2 class="tp-4">PICK PLAYER 1'S MARK</h2>
+                <fieldset class="menu__pick-player__toggle toggle split">
+                  <label class="toggle__option">
+                    <input id="radioX" type="radio" name="playerMark" />
+                    <div class="shape-x">
+                      <div class="shape-x__bar"></div>
+                      <div class="shape-x__bar"></div>
+                    </div>
+                  </label>
+                  <label class="toggle__option">
+                    <input id="radioO" type="radio" name="playerMark" />
+                    <div class="shape-o">
+                      <div class="shape-o__inner"></div>
+                    </div>
+                  </label>
+                </fieldset>
+                <p class="tp-5 tp-5--medium">Remember : X goes first</p>
+              </div>
             </div>
-            <div class="menu--buttons">
-              <button><span>New Game (VS CPU)</span></button>
-              <button><span>New Game (VS PLAYER)</span></button>
+
+            <div class="menu__buttons flow-content">
+              <button class="btn btn--primary tp-4">
+                <span>New Game (VS CPU)</span>
+              </button>
+              <button class="btn btn--accent tp-4">
+                <span>New Game (VS PLAYER)</span>
+              </button>
             </div>
           </article>
         </div>

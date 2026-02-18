@@ -11,7 +11,7 @@
   --clr-grey-3: #1f3641;
   --clr-grey-4: #21313b;
   --clr-grey-5: #1a2a33;
-  --ff-main: "Inter";
+  --ff-main: "Outfit";
   --fw-medium: 500;
   --fw-bold: 800;
   --fs-1: 2.5rem;
@@ -41,7 +41,7 @@
   --br-2: 0.375rem;
   --br-3: 0.625rem;
   --br-4: 1rem;
-  --desktop-container-width: 37.5rem;
+  --desktop-container-width: 28.75rem;
 }
 
 *,
@@ -67,6 +67,10 @@ button {
 img {
   max-width: 100%;
   display: block;
+}
+
+fieldset {
+  border: none;
 }
 
 .tp-1 {
@@ -119,6 +123,188 @@ body {
   font-size: var(--fs-4);
   font-weight: var(--fw-normal);
   line-height: 1.5;
+  background-color: var(--clr-grey-5);
+  color: var(--clr-neutral-1);
+}
+
+.flow-content > * + * {
+  margin-top: var(--flow-spacer, var(--sp-3));
+}
+
+.split {
+  display: flex;
+}
+
+.split > * {
+  width: 100%;
+}
+
+.container {
+  max-width: var(--desktop-container-width);
+  margin-inline: auto;
+}
+
+section {
+  padding-inline: var(--sp-5);
+}
+
+.btn {
+  display: block;
+  border: none;
+  border-radius: var(--br-4);
+  color: var(--clr-grey-5);
+  width: 100%;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding-block-end: 10px;
+}
+.btn span {
+  display: block;
+  border-radius: var(--br-4);
+  padding-block: var(--sp-3);
+}
+
+.btn--primary {
+  background-color: rgba(242, 177, 55, 0.7);
+}
+.btn--primary > span {
+  background-color: var(--clr-primary);
+}
+.btn--primary > span:hover {
+  background-color: var(--clr-primary-tint);
+}
+
+.btn--accent {
+  background-color: rgba(49, 195, 189, 0.7);
+}
+.btn--accent > span {
+  background-color: var(--clr-accent);
+}
+.btn--accent > span:hover {
+  background-color: var(--clr-accent-tint);
+}
+
+.menu > * {
+  --flow-spacer: var(--sp-6);
+}
+@media (min-width: 48rem) {
+  .menu > * {
+    --flow-spacer: var(--sp-7);
+  }
+}
+
+.menu__logo {
+  margin-inline: auto;
+}
+
+.wrapper {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding-block-end: 10px;
+  border-radius: var(--br-4);
+}
+
+.menu__pick-player {
+  --flow-spacer: var(--sp-5);
+  padding: var(--sp-5);
+  border-radius: var(--br-4);
+  background-color: var(--clr-grey-3);
+  color: var(--clr-grey-2);
+  text-align: center;
+  text-transform: uppercase;
+}
+@media (min-width: 48rem) {
+  .menu__pick-player {
+    padding: var(--sp-4);
+  }
+}
+
+.menu__pick-player__toggle {
+  background-color: var(--clr-grey-5);
+  padding: var(--sp-1);
+  border-radius: var(--br-3);
+}
+
+.toggle__option {
+  cursor: pointer;
+  background-color: var(--clr-fill, var(--clr-grey-5));
+  padding: var(--sp-2);
+  border-radius: var(--br-3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toggle__option:hover {
+  --clr-fill: var(--clr-grey-4);
+}
+
+.toggle__option:has(input[type=radio]:checked) {
+  --clr-fill: var(--clr-grey-2);
+}
+
+input[type=radio] {
+  appearance: none;
+  opacity: 1;
+  position: absolute;
+}
+
+.shape-x {
+  --clr-shape: var(--clr-grey-2);
+  transform: rotateZ(45deg);
+}
+
+input[type=radio]:checked + div {
+  --clr-shape: var(--clr-grey-5);
+  --clr-shape-inner: var(--clr-grey-2);
+}
+
+.shape-x__bar {
+  height: 10px;
+  width: 32px;
+  background-color: var(--clr-shape, var(--clr-grey-2));
+  border-radius: 2px;
+}
+.shape-x__bar:first-child {
+  transform: translateY(50%);
+}
+.shape-x__bar:nth-child(2) {
+  transform: translateY(-50%) rotateZ(90deg);
+}
+
+.shape-o {
+  width: 32px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: var(--clr-shape, var(--clr-grey-2));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shape-o__inner {
+  width: 12px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: var(--clr-shape-inner, var(--clr-grey-5));
+}
+
+.menu__buttons {
+  --flow-spacer: var(--sp-3);
+}
+@media (min-width: 48rem) {
+  .menu__buttons {
+    --flow-spacer: var(--sp-4);
+  }
+  .menu__buttons .tp-4 {
+    font-size: var(--fs-3);
+    line-height: var(--lh-1);
+    letter-spacing: var(--ls-3);
+    font-weight: var(--fw-bold);
+  }
+}
+
+.toggle {
+  display: flex;
 }
 
 /*# sourceMappingURL=styles.css.map */

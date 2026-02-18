@@ -1,5 +1,8 @@
 @use "./utils" as *;
 
+$bp-tablet: #{toRem(768px)};
+$bp-desktop: #{toRem(1440px)};
+
 :root {
   --clr-primary: #f2b137;
   --clr-primary-tint: #ffc860;
@@ -18,7 +21,7 @@
   --clr-grey-4: #21313b;
   --clr-grey-5: #1a2a33;
 
-  --ff-main: "Inter";
+  --ff-main: "Outfit";
 
   --fw-medium: 500;
   --fw-bold: 800;
@@ -60,5 +63,5 @@
   --br-3: #{toRem(10px)};
   --br-4: #{toRem(16px)};
 
-  --desktop-container-width: #{toRem(600px)};
+  --desktop-container-width: #{toRem(460px)};
 }

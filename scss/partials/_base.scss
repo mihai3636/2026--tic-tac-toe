@@ -6,4 +6,28 @@ body {
   font-size: var(--fs-4);
   font-weight: var(--fw-normal);
   line-height: 1.5;
+
+  background-color: var(--clr-grey-5);
+  color: var(--clr-neutral-1);
+}
+
+.flow-content > * + * {
+  margin-top: var(--flow-spacer, var(--sp-3));
+}
+
+.split {
+  display: flex;
+}
+
+.split > * {
+  width: 100%;
+}
+
+.container {
+  max-width: var(--desktop-container-width);
+  margin-inline: auto;
+}
+
+section {
+  padding-inline: var(--sp-5);
 }

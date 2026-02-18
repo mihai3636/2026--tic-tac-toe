@@ -1,0 +1,46 @@
+@use "utils" as *;
+@use "variables" as *;
+
+button {
+}
+
+.btn {
+  display: block;
+  border: none;
+  border-radius: var(--br-4);
+  color: var(--clr-grey-5);
+  width: 100%;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding-block-end: 10px;
+
+  span {
+    display: block;
+    border-radius: var(--br-4);
+
+    padding-block: var(--sp-3);
+  }
+}
+
+.btn--primary {
+  background-color: rgba(242, 177, 55, 0.7);
+
+  & > span {
+    background-color: var(--clr-primary);
+
+    &:hover {
+      background-color: var(--clr-primary-tint);
+    }
+  }
+}
+
+.btn--accent {
+  background-color: rgb(49, 195, 189, 0.7);
+
+  & > span {
+    background-color: var(--clr-accent);
+    &:hover {
+      background-color: var(--clr-accent-tint);
+    }
+  }
+}

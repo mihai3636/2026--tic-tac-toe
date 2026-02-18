@@ -1,0 +1,132 @@
+@use "utils" as *;
+@use "variables" as *;
+
+.menu > * {
+  --flow-spacer: var(--sp-6);
+
+  @media (min-width: $bp-tablet) {
+    --flow-spacer: var(--sp-7);
+  }
+}
+
+.menu__logo {
+  margin-inline: auto;
+}
+
+.wrapper {
+  background-color: rgba(0, 0, 0, 0.2);
+  // background-color: rgba(242, 177, 55, 0.7);
+  padding-block-end: 10px;
+  border-radius: var(--br-4);
+}
+
+.menu__pick-player {
+  --flow-spacer: var(--sp-5);
+
+  padding: var(--sp-5);
+  border-radius: var(--br-4);
+
+  background-color: var(--clr-grey-3);
+  // background-color: var(--clr-primary);
+
+  color: var(--clr-grey-2);
+  text-align: center;
+  text-transform: uppercase;
+
+  @media (min-width: $bp-tablet) {
+    padding: var(--sp-4);
+  }
+}
+
+.menu__pick-player__toggle {
+  background-color: var(--clr-grey-5);
+  padding: var(--sp-1);
+  border-radius: var(--br-3);
+}
+
+.toggle__option {
+  cursor: pointer;
+  background-color: var(--clr-fill, var(--clr-grey-5));
+  padding: var(--sp-2);
+  border-radius: var(--br-3);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toggle__option:hover {
+  --clr-fill: var(--clr-grey-4);
+}
+
+.toggle__option:has(input[type="radio"]:checked) {
+  --clr-fill: var(--clr-grey-2);
+}
+
+input[type="radio"] {
+  appearance: none;
+  opacity: 1;
+  position: absolute;
+}
+
+.shape-x {
+  --clr-shape: var(--clr-grey-2);
+  transform: rotateZ(45deg);
+}
+
+input[type="radio"]:checked + div {
+  --clr-shape: var(--clr-grey-5);
+  --clr-shape-inner: var(--clr-grey-2);
+}
+
+.shape-x__bar {
+  height: 10px;
+  width: 32px;
+  background-color: var(--clr-shape, var(--clr-grey-2));
+  border-radius: 2px;
+
+  &:first-child {
+    transform: translateY(50%);
+  }
+  &:nth-child(2) {
+    transform: translateY(-50%) rotateZ(90deg);
+  }
+}
+
+.shape-o {
+  width: 32px;
+  aspect-ratio: 1;
+
+  border-radius: 50%;
+  background-color: var(--clr-shape, var(--clr-grey-2));
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shape-o__inner {
+  width: 12px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: var(--clr-shape-inner, var(--clr-grey-5));
+}
+
+.menu__buttons {
+  --flow-spacer: var(--sp-3);
+
+  @media (min-width: $bp-tablet) {
+    --flow-spacer: var(--sp-4);
+
+    .tp-4 {
+      font-size: var(--fs-3);
+      line-height: var(--lh-1);
+      letter-spacing: var(--ls-3);
+      font-weight: var(--fw-bold);
+    }
+  }
+}
+
+.toggle {
+  display: flex;
+}
