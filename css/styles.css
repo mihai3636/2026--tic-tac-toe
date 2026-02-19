@@ -34,6 +34,7 @@
   --sp-3: 1rem;
   --sp-4: 1.25rem;
   --sp-5: 1.5rem;
+  --sp-6-little: 1.75rem;
   --sp-6: 1.875rem;
   --sp-7: 2.5rem;
   --br-0: 0;
@@ -93,6 +94,13 @@ fieldset {
   letter-spacing: var(--ls-3);
   font-weight: var(--fw-bold);
 }
+@media (min-width: 48rem) {
+  .tp-3 {
+    font-size: var(--fs-2);
+    line-height: var(--lh-1);
+    letter-spacing: var(--ls-2);
+  }
+}
 
 .tp-4 {
   font-size: var(--fs-4);
@@ -116,6 +124,16 @@ fieldset {
   line-height: var(--lh-1);
   letter-spacing: var(--ls-6);
   font-weight: var(--fw-bold);
+}
+.tp-6--medium {
+  font-weight: var(--fw-medium);
+}
+@media (min-width: 48rem) {
+  .tp-6 {
+    font-size: var(--fs-5);
+    line-height: var(--lh-2);
+    letter-spacing: var(--ls-5);
+  }
 }
 
 body {
@@ -144,15 +162,36 @@ body {
   margin-inline: auto;
 }
 
-section {
-  padding-inline: var(--sp-5);
+.wrapper {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding-block-end: 8px;
+  border-radius: var(--br-4);
 }
 
-.center-screen-vertically {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.wrapper > *:first-child {
+  background-color: var(--clr-grey-3);
+  border-radius: var(--br-4);
+}
+
+section {
+  --padding: 7.5rem;
+  padding-inline: var(--sp-5);
+  padding-block-start: var(--padding);
+}
+@media (min-width: 48rem) {
+  section {
+    --padding: 11.25rem;
+  }
+}
+
+main[data-state=game-active] section {
+  --padding: var(--sp-5);
+}
+main[data-state=game-active] article.menu {
+  display: none;
+}
+main[data-state=game-active] article.game {
+  display: grid;
 }
 
 .btn {
@@ -274,20 +313,12 @@ input[type=radio]:checked + div {
   margin-inline: auto;
 }
 
-.wrapper {
-  background-color: rgba(0, 0, 0, 0.2);
-  padding-block-end: 10px;
-  border-radius: var(--br-4);
-}
-
 .menu__pick-player {
   --flow-spacer: var(--sp-5);
-  padding: var(--sp-5);
-  border-radius: var(--br-4);
-  background-color: var(--clr-grey-3);
   color: var(--clr-grey-2);
   text-align: center;
   text-transform: uppercase;
+  padding: var(--sp-5);
 }
 @media (min-width: 48rem) {
   .menu__pick-player {
@@ -312,6 +343,26 @@ input[type=radio]:checked + div {
 
 .toggle {
   display: flex;
+}
+
+.game {
+  display: none;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--sp-4);
+}
+
+.cell {
+  height: 100%;
+  display: grid;
+  place-content: center;
+  padding-block: var(--sp-5);
+  padding-inline: var(--sp-6-little);
+}
+
+.wrapper:has(.cell) {
+  min-width: 96px;
+  min-height: 96px;
+  aspect-ratio: 1;
 }
 
 /*# sourceMappingURL=styles.css.map */

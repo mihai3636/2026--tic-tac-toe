@@ -28,13 +28,38 @@ body {
   margin-inline: auto;
 }
 
-section {
-  padding-inline: var(--sp-5);
+.wrapper {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding-block-end: 8px;
+  border-radius: var(--br-4);
 }
 
-.center-screen-vertically {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.wrapper > *:first-child {
+  background-color: var(--clr-grey-3);
+  border-radius: var(--br-4);
+}
+
+section {
+  --padding: #{toRem(120px)};
+
+  @media (min-width: $bp-tablet) {
+    --padding: #{toRem(180px)};
+  }
+
+  padding-inline: var(--sp-5);
+  padding-block-start: var(--padding);
+}
+
+main[data-state="game-active"] {
+  section {
+    --padding: var(--sp-5);
+  }
+
+  article.menu {
+    display: none;
+  }
+
+  article.game {
+    display: grid;
+  }
 }

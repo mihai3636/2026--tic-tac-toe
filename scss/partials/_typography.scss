@@ -22,6 +22,12 @@
   line-height: var(--lh-1);
   letter-spacing: var(--ls-3);
   font-weight: var(--fw-bold);
+
+  @media (min-width: $bp-tablet) {
+    font-size: var(--fs-2);
+    line-height: var(--lh-1);
+    letter-spacing: var(--ls-2);
+  }
 }
 
 .tp-4 {
@@ -47,4 +53,14 @@
   line-height: var(--lh-1);
   letter-spacing: var(--ls-6);
   font-weight: var(--fw-bold);
+
+  &--medium {
+    font-weight: var(--fw-medium);
+  }
+
+  @media (min-width: $bp-tablet) {
+    font-size: var(--fs-5);
+    line-height: var(--lh-2);
+    letter-spacing: var(--ls-5);
+  }
 }

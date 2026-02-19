@@ -1,0 +1,38 @@
+@use "utils" as *;
+@use "variables" as *;
+
+.game {
+  display: none;
+
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--sp-4);
+}
+
+.cell {
+  height: 100%;
+  display: grid;
+  place-content: center;
+
+  padding-block: var(--sp-5);
+  padding-inline: var(--sp-6-little);
+}
+
+.wrapper:has(.cell) {
+  min-width: 96px;
+  min-height: 96px;
+
+  aspect-ratio: 1;
+}
+// .cell {
+//   padding-block: var(--sp-5);
+//   padding-inline: var(--sp-6-little);
+
+//   @media (min-width: $bp-tablet) {
+//     padding-inline: 38px;
+//     padding-block-start: 36px;
+//     padding-block-end: 32px;
+//   }
+
+//   display: grid;
+//   place-content: center;
+// }

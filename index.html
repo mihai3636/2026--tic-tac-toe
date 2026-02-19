@@ -22,10 +22,77 @@
 
     <title>Tic Tac Toe</title>
   </head>
-  <body class="center-screen-vertically">
-    <main class="tp-3">
+  <body>
+    <main class="tp-3" data-state="game-active">
       <section>
         <div class="container">
+          <article class="game tp-6 tp-6--medium">
+            <img src="./assets/logo.svg" alt="logo" />
+            <div class="turn turn--x">X <span>TURN</span></div>
+            <button class="btn btn--primary">
+              <span>
+                <img src="./assets/icon-restart.svg" alt="Restart" />
+              </span>
+            </button>
+            <div class="wrapper">
+              <div class="cell">
+                <img src="./assets/icon-x.svg" alt="" />
+              </div>
+            </div>
+            <div class="wrapper">
+              <div class="cell">
+                <img src="./assets/icon-x-outline.svg" alt="" />
+              </div>
+            </div>
+            <div class="wrapper">
+              <div class="cell">
+                <img src="./assets/icon-x-outline.svg" alt="" />
+              </div>
+            </div>
+            <div class="wrapper">
+              <div class="cell">
+                <img src="./assets/icon-x-outline.svg" alt="" />
+              </div>
+            </div>
+            <div class="wrapper">
+              <div class="cell">
+                <img src="./assets/icon-x-outline.svg" alt="" />
+              </div>
+            </div>
+            <div class="wrapper">
+              <div class="cell">
+                <img src="./assets/icon-x-outline.svg" alt="" />
+              </div>
+            </div>
+            <div class="wrapper">
+              <div class="cell">
+                <img src="./assets/icon-x-outline.svg" alt="" />
+              </div>
+            </div>
+            <div class="wrapper">
+              <div class="cell">
+                <img src="./assets/icon-x-outline.svg" alt="" />
+              </div>
+            </div>
+            <div class="wrapper">
+              <div class="cell">
+                <img src="./assets/icon-x-outline.svg" alt="" />
+              </div>
+            </div>
+            <div class="game__info game__info--p1">
+              <p>X (<span id="p1">YOU</span>)</p>
+              <p class="tp-3" id="p1Score">0</p>
+            </div>
+            <div class="game__info game__info--ties">
+              <p>TIES</p>
+              <p class="tp-3" id="ties">0</p>
+            </div>
+            <div class="game__info game__info--p2">
+              <p>O (<span id="p2">CPU</span>)</p>
+              <p class="tp-3" id="p1Score">0</p>
+            </div>
+          </article>
+
           <article class="menu flow-content">
             <img
               class="menu__logo"

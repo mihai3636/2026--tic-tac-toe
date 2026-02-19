@@ -13,26 +13,14 @@
   margin-inline: auto;
 }
 
-.wrapper {
-  background-color: rgba(0, 0, 0, 0.2);
-  // background-color: rgba(242, 177, 55, 0.7);
-  padding-block-end: 10px;
-  border-radius: var(--br-4);
-}
-
 .menu__pick-player {
   --flow-spacer: var(--sp-5);
-
-  padding: var(--sp-5);
-  border-radius: var(--br-4);
-
-  background-color: var(--clr-grey-3);
-  // background-color: var(--clr-primary);
 
   color: var(--clr-grey-2);
   text-align: center;
   text-transform: uppercase;
 
+  padding: var(--sp-5);
   @media (min-width: $bp-tablet) {
     padding: var(--sp-4);
   }
