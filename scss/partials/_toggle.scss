@@ -1,6 +1,12 @@
 @use "utils" as *;
 @use "variables" as *;
 
+.toggle {
+  background-color: var(--clr-grey-5);
+  padding: var(--sp-1);
+  border-radius: var(--br-3);
+}
+
 .toggle__option {
   cursor: pointer;
   background-color: var(--clr-fill, var(--clr-grey-5));
