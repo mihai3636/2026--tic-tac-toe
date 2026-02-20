@@ -46,6 +46,12 @@
   &--medium {
     font-weight: var(--fw-medium);
   }
+
+  @media (min-width: $bp-tablet) {
+    font-size: var(--fs-4);
+    line-height: var(--lh-1);
+    letter-spacing: var(--ls-4);
+  }
 }
 
 .tp-6 {

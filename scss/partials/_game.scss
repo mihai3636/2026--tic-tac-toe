@@ -58,6 +58,16 @@
   .shape-x {
     --bar-height: 5px;
     --bar-width: 16px;
+
+    @media (min-width: $bp-tablet) {
+      --bar-height: 6px;
+      --bar-width: 23px;
+    }
+  }
+
+  @media (min-width: $bp-tablet) {
+    padding-block: var(--sp-3);
+    padding-inline: var(--sp-3);
   }
 }
 

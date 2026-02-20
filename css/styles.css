@@ -118,6 +118,13 @@ fieldset {
 .tp-5--medium {
   font-weight: var(--fw-medium);
 }
+@media (min-width: 48rem) {
+  .tp-5 {
+    font-size: var(--fs-4);
+    line-height: var(--lh-1);
+    letter-spacing: var(--ls-4);
+  }
+}
 
 .tp-6 {
   font-size: var(--fs-6);
@@ -275,9 +282,21 @@ main[data-state=game-active] article.game {
 .btn--icon > *:first-child:hover {
   background-color: var(--clr-grey-1);
 }
+@media (min-width: 48rem) {
+  .btn--icon > *:first-child {
+    padding: var(--sp-3);
+    padding-block-end: var(--sp-2);
+  }
+}
 .btn--icon img {
   width: 15px;
   height: 15px;
+}
+@media (min-width: 48rem) {
+  .btn--icon img {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 .toggle {
@@ -400,6 +419,18 @@ input[type=radio]:checked + div {
 .turn .shape-x {
   --bar-height: 5px;
   --bar-width: 16px;
+}
+@media (min-width: 48rem) {
+  .turn .shape-x {
+    --bar-height: 6px;
+    --bar-width: 23px;
+  }
+}
+@media (min-width: 48rem) {
+  .turn {
+    padding-block: var(--sp-3);
+    padding-inline: var(--sp-3);
+  }
 }
 
 .wrapper:has(.turn) {
