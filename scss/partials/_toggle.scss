@@ -32,46 +32,7 @@ input[type="radio"] {
   position: absolute;
 }
 
-.shape-x {
-  --clr-shape: var(--clr-grey-2);
-  display: inline-block;
-  transform: rotateZ(45deg);
-}
-
 input[type="radio"]:checked + div {
   --clr-shape: var(--clr-grey-5);
   --clr-shape-inner: var(--clr-grey-2);
-}
-
-.shape-x__bar {
-  height: var(--bar-height, 10px);
-  width: var(--bar-width, 32px);
-  background-color: var(--clr-shape, var(--clr-grey-2));
-  border-radius: 2px;
-
-  &:first-child {
-    transform: translateY(50%);
-  }
-  &:nth-child(2) {
-    transform: translateY(-50%) rotateZ(90deg);
-  }
-}
-
-.shape-o {
-  width: 32px;
-  aspect-ratio: 1;
-
-  border-radius: 50%;
-  background-color: var(--clr-shape, var(--clr-grey-2));
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.shape-o__inner {
-  width: 12px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background-color: var(--clr-shape-inner, var(--clr-grey-5));
 }

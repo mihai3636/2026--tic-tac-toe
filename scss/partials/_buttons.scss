@@ -12,12 +12,9 @@ button {
   width: 100%;
   text-transform: uppercase;
   cursor: pointer;
-  padding-block-end: 10px;
 
-  span {
+  *:first-child {
     display: block;
-    border-radius: var(--br-4);
-
     padding-block: var(--sp-3);
   }
 }
