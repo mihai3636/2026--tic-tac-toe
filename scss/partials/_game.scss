@@ -26,15 +26,22 @@
   display: grid;
   place-content: center;
 
+  cursor: pointer;
   background-color: var(--clr-grey-4);
   padding-block: var(--sp-5);
   padding-inline: var(--sp-6-little);
+
+  & > img {
+    opacity: 0;
+  }
+
+  &:hover > img {
+    opacity: 1;
+  }
 }
 
 .wrapper:has(.cell) {
-  min-width: 96px;
   min-height: 96px;
-
   aspect-ratio: 1;
 }
 
@@ -44,6 +51,8 @@
 
 //   padding-block: var(--sp-5);
 //   padding-inline: var(--sp-6-little);
+
+//   background-color: var(--clr-grey-4);
 
 //   @media (min-width: $bp-tablet) {
 //     padding-inline: 38px;

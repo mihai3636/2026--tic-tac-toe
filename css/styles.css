@@ -404,13 +404,19 @@ input[type=radio]:checked + div {
   height: 100%;
   display: grid;
   place-content: center;
+  cursor: pointer;
   background-color: var(--clr-grey-4);
   padding-block: var(--sp-5);
   padding-inline: var(--sp-6-little);
 }
+.cell > img {
+  opacity: 0;
+}
+.cell:hover > img {
+  opacity: 1;
+}
 
 .wrapper:has(.cell) {
-  min-width: 96px;
   min-height: 96px;
   aspect-ratio: 1;
 }
