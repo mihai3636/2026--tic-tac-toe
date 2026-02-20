@@ -73,6 +73,15 @@
     }
   }
 
+  .shape-o {
+    --o-width: 16px;
+    --o-inner-width: 8px;
+    @media (min-width: $bp-tablet) {
+      --o-width: 20px;
+      --o-inner-width: 10px;
+    }
+  }
+
   @media (min-width: $bp-tablet) {
     padding-block: var(--sp-3);
     padding-inline: var(--sp-3);

@@ -21,7 +21,7 @@
 }
 
 .shape-o {
-  width: 32px;
+  width: var(--o-width, 32px);
   aspect-ratio: 1;
 
   border-radius: 50%;
@@ -33,7 +33,7 @@
 }
 
 .shape-o__inner {
-  width: 12px;
+  width: var(--o-inner-width, 12px);
   aspect-ratio: 1;
   border-radius: 50%;
   background-color: var(--clr-shape-inner, var(--clr-grey-5));

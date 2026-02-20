@@ -219,7 +219,7 @@ main[data-state=game-active] article.game {
 }
 
 .shape-o {
-  width: 32px;
+  width: var(--o-width, 32px);
   aspect-ratio: 1;
   border-radius: 50%;
   background-color: var(--clr-shape, var(--clr-grey-2));
@@ -229,7 +229,7 @@ main[data-state=game-active] article.game {
 }
 
 .shape-o__inner {
-  width: 12px;
+  width: var(--o-inner-width, 12px);
   aspect-ratio: 1;
   border-radius: 50%;
   background-color: var(--clr-shape-inner, var(--clr-grey-5));
@@ -433,6 +433,16 @@ input[type=radio]:checked + div {
   .turn .shape-x {
     --bar-height: 6px;
     --bar-width: 23px;
+  }
+}
+.turn .shape-o {
+  --o-width: 16px;
+  --o-inner-width: 8px;
+}
+@media (min-width: 48rem) {
+  .turn .shape-o {
+    --o-width: 20px;
+    --o-inner-width: 10px;
   }
 }
 @media (min-width: 48rem) {
