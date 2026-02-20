@@ -34,6 +34,7 @@ input[type="radio"] {
 
 .shape-x {
   --clr-shape: var(--clr-grey-2);
+  display: inline-block;
   transform: rotateZ(45deg);
 }
 
@@ -43,8 +44,8 @@ input[type="radio"]:checked + div {
 }
 
 .shape-x__bar {
-  height: 10px;
-  width: 32px;
+  height: var(--bar-height, 10px);
+  width: var(--bar-width, 32px);
   background-color: var(--clr-shape, var(--clr-grey-2));
   border-radius: 2px;
 

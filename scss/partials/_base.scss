@@ -30,13 +30,13 @@ body {
 
 .wrapper {
   background-color: rgba(0, 0, 0, 0.2);
-  padding-block-end: 8px;
-  border-radius: var(--br-4);
+  padding-block-end: var(--wrapper-padding, 8px);
+  border-radius: var(--wrapper-br, var(--br-4));
 }
 
 .wrapper > *:first-child {
   background-color: var(--clr-grey-3);
-  border-radius: var(--br-4);
+  border-radius: var(--wrapper-br, var(--br-4));
 }
 
 section {

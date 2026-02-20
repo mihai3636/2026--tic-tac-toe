@@ -6,6 +6,7 @@
 
   grid-template-columns: 1fr 1fr 1fr;
   gap: var(--sp-4);
+  align-items: center;
 }
 
 .cell {
@@ -36,3 +37,24 @@
 //   display: grid;
 //   place-content: center;
 // }
+
+.turn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--sp-1);
+
+  padding-block: var(--sp-2);
+  padding-inline: var(--sp-3);
+  color: var(--clr-grey-2);
+}
+
+.wrapper:has(.turn) {
+  --wrapper-br: 6px;
+  --wrapper-padding: 4px;
+}
+
+.shape-x {
+  --bar-height: 5px;
+  --bar-width: 16px;
+}
