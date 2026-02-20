@@ -75,3 +75,27 @@
   --wrapper-br: 6px;
   --wrapper-padding: 4px;
 }
+
+.game__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding-block: var(--sp-2);
+  padding-inline: var(--sp-4);
+  background-color: var(--clr-grey-2);
+  color: var(--clr-grey-5);
+  border-radius: var(--br-3);
+}
+
+.game__info--p1 {
+  background-color: var(--clr-accent);
+}
+
+.game__info--ties {
+  background-color: var(--clr-grey-2);
+}
+
+.game__info--p2 {
+  background-color: var(--clr-primary);
+}
