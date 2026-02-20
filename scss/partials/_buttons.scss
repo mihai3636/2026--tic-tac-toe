@@ -8,13 +8,13 @@ button {
   display: block;
   border: none;
   color: var(--clr-grey-5);
-  width: 100%;
   text-transform: uppercase;
   cursor: pointer;
 
   & > *:first-child {
     display: block;
     padding-block: var(--sp-3);
+    padding-inline: var(--sp-3);
   }
 }
 

@@ -28,10 +28,14 @@
 }
 
 .menu__buttons {
-  --flow-spacer: var(--sp-3);
+  --spacer: var(--sp-3);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacer);
 
   @media (min-width: $bp-tablet) {
-    --flow-spacer: var(--sp-4);
+    --spacer: var(--sp-4);
 
     .tp-4 {
       font-size: var(--fs-3);

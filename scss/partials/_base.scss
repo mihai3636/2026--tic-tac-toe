@@ -53,6 +53,10 @@ section {
 main[data-state="game-active"] {
   section {
     --padding: var(--sp-5);
+
+    @media (min-width: $bp-tablet) {
+      --padding: #{toRem(180px)};
+    }
   }
 
   article.menu {

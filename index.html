@@ -25,6 +25,26 @@
   <body>
     <main class="tp-3" data-state="game-active">
       <section>
+        <div class="overlay"></div>
+        <div class="modal">
+          <h2 class="modal__title tp-5">YOU WON!</h2>
+          <div class="modal__content tp-2">
+            <img
+              class="modal__content__img"
+              src="./assets/icon-x.svg"
+              alt="X Icon"
+            />
+            <span>takes the round</span>
+          </div>
+          <div class="modal__footer">
+            <button class="btn btn--primary wrapper tp-4">
+              <span>New Game (VS CPU)</span>
+            </button>
+            <button class="btn btn--accent wrapper tp-4">
+              <span>New Game (VS PLAYER)</span>
+            </button>
+          </div>
+        </div>
         <div class="container">
           <article class="game tp-6 tp-6--medium">
             <img src="./assets/logo.svg" alt="logo" />
@@ -135,7 +155,7 @@
               </div>
             </div>
 
-            <div class="menu__buttons flow-content">
+            <div class="menu__buttons flow-contents">
               <button class="btn btn--primary wrapper tp-4">
                 <span>New Game (VS CPU)</span>
               </button>

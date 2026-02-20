@@ -43,6 +43,8 @@
   --br-3: 0.625rem;
   --br-4: 1rem;
   --desktop-container-width: 28.75rem;
+  --z-overlay: 1000;
+  --z-modal: 1100;
 }
 
 *,
@@ -86,6 +88,13 @@ fieldset {
   line-height: var(--lh-1);
   letter-spacing: var(--ls-2);
   font-weight: var(--fw-bold);
+}
+@media (min-width: 48rem) {
+  .tp-2 {
+    font-size: var(--fs-1);
+    line-height: var(--lh-1);
+    letter-spacing: var(--ls-1);
+  }
 }
 
 .tp-3 {
@@ -193,6 +202,11 @@ section {
 main[data-state=game-active] section {
   --padding: var(--sp-5);
 }
+@media (min-width: 48rem) {
+  main[data-state=game-active] section {
+    --padding: 11.25rem;
+  }
+}
 main[data-state=game-active] article.menu {
   display: none;
 }
@@ -239,13 +253,13 @@ main[data-state=game-active] article.game {
   display: block;
   border: none;
   color: var(--clr-grey-5);
-  width: 100%;
   text-transform: uppercase;
   cursor: pointer;
 }
 .btn > *:first-child {
   display: block;
   padding-block: var(--sp-3);
+  padding-inline: var(--sp-3);
 }
 
 .btn--primary {
@@ -334,6 +348,51 @@ input[type=radio]:checked + div {
   --clr-shape-inner: var(--clr-grey-2);
 }
 
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: var(--z-overlay);
+}
+
+section {
+  position: relative;
+}
+
+.modal {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  padding-block: 2.75rem;
+  background-color: var(--clr-grey-3);
+  text-align: center;
+  z-index: var(--z-modal);
+}
+
+.modal__title {
+  color: var(--clr-grey-2);
+}
+
+.modal__content {
+  display: flex;
+  justify-content: center;
+  gap: var(--sp-5);
+  align-items: center;
+  color: var(--clr-winner, var(--clr-accent));
+}
+
+.modal__content__img {
+  width: 1.625rem;
+  aspect-ratio: 1;
+}
+@media (min-width: 48rem) {
+  .modal__content__img {
+    width: 4rem;
+  }
+}
+
 .menu > * {
   --flow-spacer: var(--sp-6);
 }
@@ -362,11 +421,14 @@ input[type=radio]:checked + div {
 }
 
 .menu__buttons {
-  --flow-spacer: var(--sp-3);
+  --spacer: var(--sp-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacer);
 }
 @media (min-width: 48rem) {
   .menu__buttons {
-    --flow-spacer: var(--sp-4);
+    --spacer: var(--sp-4);
   }
   .menu__buttons .tp-4 {
     font-size: var(--fs-3);

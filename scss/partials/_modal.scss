@@ -1,0 +1,55 @@
+@use "utils" as *;
+@use "variables" as *;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+
+  z-index: var(--z-overlay);
+}
+
+section {
+  position: relative;
+}
+
+.modal {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  padding-block: toRem(44px);
+
+  background-color: var(--clr-grey-3);
+  text-align: center;
+
+  z-index: var(--z-modal);
+}
+
+.modal__title {
+  color: var(--clr-grey-2);
+}
+
+.modal__content {
+  display: flex;
+  justify-content: center;
+  gap: var(--sp-5);
+
+  align-items: center;
+  color: var(--clr-winner, var(--clr-accent));
+}
+
+.modal__content__img {
+  width: toRem(26px);
+  aspect-ratio: 1;
+
+  @media (min-width: $bp-tablet) {
+    width: toRem(64px);
+  }
+}
+
+.modal,
+.overlay {
+  // display: none;
+}

@@ -65,4 +65,7 @@ $bp-desktop: #{toRem(1440px)};
   --br-4: #{toRem(16px)};
 
   --desktop-container-width: #{toRem(460px)};
+
+  --z-overlay: 1000;
+  --z-modal: 1100;
 }
