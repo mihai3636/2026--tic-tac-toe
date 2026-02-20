@@ -9,6 +9,10 @@
   align-items: center;
 }
 
+.game *:nth-child(3) {
+  justify-self: end;
+}
+
 .cell {
   height: 100%;
   display: grid;

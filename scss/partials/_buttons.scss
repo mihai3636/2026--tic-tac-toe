@@ -7,13 +7,12 @@ button {
 .btn {
   display: block;
   border: none;
-  border-radius: var(--br-4);
   color: var(--clr-grey-5);
   width: 100%;
   text-transform: uppercase;
   cursor: pointer;
 
-  *:first-child {
+  & > *:first-child {
     display: block;
     padding-block: var(--sp-3);
   }
@@ -39,5 +38,28 @@ button {
     &:hover {
       background-color: var(--clr-accent-tint);
     }
+  }
+}
+
+.btn--icon {
+  --wrapper-padding: 4px;
+  --wrapper-br: 6px;
+
+  width: auto;
+  background-color: rgba(168, 191, 201, 0.7);
+
+  & > *:first-child {
+    padding: var(--sp-2);
+    padding-block-end: var(--sp-1);
+
+    background-color: var(--clr-grey-2);
+    &:hover {
+      background-color: var(--clr-grey-1);
+    }
+  }
+
+  img {
+    width: 15px;
+    height: 15px;
   }
 }
