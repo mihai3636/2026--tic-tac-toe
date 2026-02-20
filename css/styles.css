@@ -181,7 +181,7 @@ body {
 
 section {
   --padding: 7.5rem;
-  padding-inline: var(--sp-5);
+  padding-inline: var(--sp-4);
   padding-block-start: var(--padding);
 }
 @media (min-width: 48rem) {
