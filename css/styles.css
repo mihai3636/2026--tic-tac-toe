@@ -285,7 +285,6 @@ main[data-state=game-active] article.game {
 .btn--icon {
   --wrapper-padding: 4px;
   --wrapper-br: 6px;
-  width: auto;
   background-color: rgba(168, 191, 201, 0.7);
 }
 .btn--icon > *:first-child {
@@ -311,6 +310,16 @@ main[data-state=game-active] article.game {
     width: 20px;
     height: 20px;
   }
+}
+
+.btn--neutral {
+  background-color: rgba(168, 191, 201, 0.7);
+}
+.btn--neutral > span {
+  background-color: var(--clr-grey-2);
+}
+.btn--neutral > span:hover {
+  background-color: var(--clr-grey-1);
 }
 
 .toggle {
@@ -391,6 +400,13 @@ section {
   .modal__content__img {
     width: 4rem;
   }
+}
+
+.modal__footer {
+  --flow-spacer: var(--sp-5);
+  display: flex;
+  justify-content: center;
+  gap: var(--sp-3);
 }
 
 .menu > * {

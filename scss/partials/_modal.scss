@@ -49,6 +49,14 @@ section {
   }
 }
 
+.modal__footer {
+  --flow-spacer: var(--sp-5);
+
+  display: flex;
+  justify-content: center;
+  gap: var(--sp-3);
+}
+
 .modal,
 .overlay {
   // display: none;
