@@ -2,6 +2,7 @@
 @use "variables" as *;
 
 .overlay {
+  display: none;
   position: fixed;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.6);
@@ -14,6 +15,7 @@ section {
 }
 
 .modal {
+  display: none;
   position: absolute;
   left: 0;
   right: 0;
@@ -25,6 +27,15 @@ section {
   text-align: center;
 
   z-index: var(--z-modal);
+}
+
+.modal--on {
+  .overlay {
+    display: block;
+  }
+  .modal {
+    display: block;
+  }
 }
 
 .modal__title {
@@ -63,9 +74,4 @@ section {
   display: flex;
   justify-content: center;
   gap: var(--sp-3);
-}
-
-.modal,
-.overlay {
-  // display: none;
 }
