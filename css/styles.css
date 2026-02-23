@@ -392,6 +392,14 @@ section {
   color: var(--clr-winner, var(--clr-accent));
 }
 
+.modal--wins-x .modal__content {
+  --clr-winner: var(--clr-accent);
+}
+
+.modal--wins-o .modal__content {
+  --clr-winner: var(--clr-primary);
+}
+
 .modal__content__img {
   width: 1.625rem;
   aspect-ratio: 1;

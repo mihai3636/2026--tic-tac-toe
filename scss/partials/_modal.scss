@@ -40,6 +40,14 @@ section {
   color: var(--clr-winner, var(--clr-accent));
 }
 
+.modal--wins-x .modal__content {
+  --clr-winner: var(--clr-accent);
+}
+
+.modal--wins-o .modal__content {
+  --clr-winner: var(--clr-primary);
+}
+
 .modal__content__img {
   width: toRem(26px);
   aspect-ratio: 1;
