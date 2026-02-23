@@ -22,6 +22,7 @@
 }
 
 .cell {
+  position: relative;
   height: 100%;
   display: grid;
   place-content: center;
@@ -36,6 +37,16 @@
   }
 
   &:hover > img {
+    opacity: 1;
+  }
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  opacity: 0;
+  position: absolute;
+
+  &:checked + img {
     opacity: 1;
   }
 }

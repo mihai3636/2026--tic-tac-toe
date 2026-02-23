@@ -496,6 +496,7 @@ section {
 }
 
 .cell {
+  position: relative;
   height: 100%;
   display: grid;
   place-content: center;
@@ -508,6 +509,15 @@ section {
   opacity: 0;
 }
 .cell:hover > img {
+  opacity: 1;
+}
+
+input[type=checkbox] {
+  appearance: none;
+  opacity: 0;
+  position: absolute;
+}
+input[type=checkbox]:checked + img {
   opacity: 1;
 }
 
