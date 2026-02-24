@@ -2,8 +2,12 @@
 @use "variables" as *;
 
 .shape-x {
-  display: inline-block;
+  display: none;
   transform: rotateZ(45deg);
+}
+
+.turn--x .shape-x {
+  display: inline-block;
 }
 
 .shape-x__bar {
@@ -27,9 +31,13 @@
   border-radius: 50%;
   background-color: var(--clr-shape, var(--clr-grey-2));
 
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
+}
+
+.turn--o .shape-o {
+  display: flex;
 }
 
 .shape-o__inner {

@@ -3,8 +3,7 @@ console.log("Hello world!");
 
 const inputOneEl = document.getElementById("cell-1");
 const gameEl = document.querySelector(".game");
-
-console.log(gameEl);
+const turnEl = document.querySelector(".turn");
 
 const playerX = {
   id: 1,
@@ -46,8 +45,12 @@ gameEl.addEventListener("change", (ev) => {
   ev.target.disabled = true;
   updateImgCheckedUi(ev.target);
   switchPlayer();
+
   updateImgHoverUi();
+  updateTurnUi();
 });
+
+resetUiCheckboxes();
 
 function switchPlayer() {
   turn = (turn + 1) % 2;
@@ -69,4 +72,23 @@ function updateImgHoverUi() {
   [...imgElements].forEach((imgEl) => {
     imgEl.src = currentPlayer.iconHover;
   });
+}
+
+function resetUiCheckboxes() {
+  const inputElements = document.querySelectorAll(`input[type=checkbox]`);
+  [...inputElements].forEach((el) => {
+    el.checked = false;
+  });
+}
+
+function updateTurnUi() {
+  console.log(turn);
+  if (turn === TURN_X) {
+    turnEl.classList.add("turn--x");
+    turnEl.classList.remove("turn--o");
+    return;
+  }
+
+  turnEl.classList.add("turn--o");
+  turnEl.classList.remove("turn--x");
 }

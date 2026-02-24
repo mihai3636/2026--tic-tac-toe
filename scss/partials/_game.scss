@@ -74,9 +74,8 @@ input[type="checkbox"] {
 
 .turn {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: var(--sp-1);
 
   background-color: var(--clr-grey-4);
   color: var(--clr-grey-2);
@@ -105,7 +104,7 @@ input[type="checkbox"] {
 
   @media (min-width: $bp-tablet) {
     padding-block: var(--sp-3);
-    padding-inline: var(--sp-3);
+    padding-inline: var(--sp-6);
   }
 }
 
