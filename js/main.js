@@ -48,6 +48,7 @@ gameEl.addEventListener("change", (ev) => {
 
   updateImgHoverUi();
   updateTurnUi();
+  updateScoreUi();
 });
 
 resetUiCheckboxes();
@@ -59,7 +60,6 @@ function switchPlayer() {
 
 function updateImgCheckedUi(checkboxEl) {
   const imgEl = checkboxEl.closest("label.cell").querySelector("img");
-  console.log(imgEl);
   imgEl.src = currentPlayer.iconChecked;
   imgEl.dataset.checked = currentPlayer.mark;
 }
@@ -91,4 +91,14 @@ function updateTurnUi() {
 
   turnEl.classList.add("turn--o");
   turnEl.classList.remove("turn--x");
+}
+
+function updateScoreUi() {
+  const p1ScoreEl = document.getElementById("p1Score");
+  const p2ScoreEl = document.getElementById("p2Score");
+  const tiesScoreEl = document.getElementById("ties");
+
+  p1ScoreEl.textContent = score.p1;
+  p2ScoreEl.textContent = score.p2;
+  tiesScoreEl = score.ties;
 }
