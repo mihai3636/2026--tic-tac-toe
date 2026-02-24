@@ -31,6 +31,11 @@ const score = {
   },
 };
 
+const winner = {
+  cells: [],
+  mark: null,
+};
+
 const board = [Array(3).fill(null), Array(3).fill(null), Array(3).fill(null)];
 const boardUi = [Array(3).fill(null), Array(3).fill(null), Array(3).fill(null)];
 initBoardUi();
@@ -53,7 +58,7 @@ gameEl.addEventListener("click", (ev) => {
 
   board[i][j] = currentPlayer.mark;
 
-  console.log(`Winner is: ${computeWinner()}`);
+  console.log(`Winner is: `, computeWinner());
 
   render();
 });
@@ -134,7 +139,14 @@ function computeWinner() {
       board[i][0] === board[i][1] &&
       board[i][1] === board[i][2]
     ) {
-      return board[i][0];
+      return {
+        cells: [
+          [i, 0],
+          [i, 1],
+          [i, 2],
+        ],
+        mark: board[i][0],
+      };
     }
 
     if (
@@ -142,7 +154,14 @@ function computeWinner() {
       board[0][i] === board[1][i] &&
       board[1][i] === board[2][i]
     ) {
-      return board[0][i];
+      return {
+        cells: [
+          [0, i],
+          [1, i],
+          [2, i],
+        ],
+        mark: board[0][i],
+      };
     }
   }
 
@@ -151,7 +170,14 @@ function computeWinner() {
     board[0][0] === board[1][1] &&
     board[1][1] === board[2][2]
   ) {
-    return board[0][0];
+    return {
+      cells: [
+        [0, 0],
+        [1, 1],
+        [2, 2],
+      ],
+      mark: board[0][0],
+    };
   }
 
   if (
@@ -159,7 +185,14 @@ function computeWinner() {
     board[0][2] === board[1][1] &&
     board[1][1] === board[2][0]
   ) {
-    return board[0][2];
+    return {
+      cells: [
+        [0, 2],
+        [1, 1],
+        [2, 0],
+      ],
+      mark: board[0][2],
+    };
   }
 
   return null;

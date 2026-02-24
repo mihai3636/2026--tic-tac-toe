@@ -525,6 +525,14 @@ section {
   opacity: 1;
 }
 
+.cell--winner-x {
+  background-color: var(--clr-accent);
+}
+
+.cell--winner-o {
+  background-color: var(--clr-primary);
+}
+
 .wrapper:has(.cell) {
   min-height: 96px;
   aspect-ratio: 1;
