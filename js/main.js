@@ -31,6 +31,10 @@ const score = {
   },
 };
 
+const board = [Array(3).fill(null), Array(3).fill(null), Array(3).fill(null)];
+const boardUi = [Array(3).fill(null), Array(3).fill(null), Array(3).fill(null)];
+initBoardUi();
+
 const players = [playerX, playerO];
 const TURN_X = 0;
 const TURN_O = 1;
@@ -38,47 +42,65 @@ const TURN_O = 1;
 let turn = TURN_X;
 let currentPlayer = players[turn];
 
-console.log(currentPlayer);
+gameEl.addEventListener("click", (ev) => {
+  const cellEl = ev.target.closest(".cell");
+  if (!cellEl) return;
 
-gameEl.addEventListener("change", (ev) => {
-  console.log(`Clicked on ${ev.target}`);
-  ev.target.disabled = true;
-  updateImgCheckedUi(ev.target);
-  switchPlayer();
+  cellEl.disabled = true;
 
-  updateImgHoverUi();
-  updateTurnUi();
-  updateScoreUi();
+  const i = Number(cellEl.dataset.i);
+  const j = Number(cellEl.dataset.j);
+
+  board[i][j] = currentPlayer.mark;
+
+  render();
 });
 
-resetUiCheckboxes();
+function render() {
+  updateCheckedBoardUi();
+  switchPlayer();
+
+  updateHoverBoardUi();
+  updateTurnUi();
+  updateScoreUi();
+}
+
+function initBoardUi() {
+  const cellEls = document.querySelectorAll(".cell");
+  [...cellEls].forEach((el) => {
+    boardUi[el.dataset.i][el.dataset.j] = el.querySelector("img");
+  });
+}
 
 function switchPlayer() {
   turn = (turn + 1) % 2;
   currentPlayer = players[turn];
 }
 
-function updateImgCheckedUi(checkboxEl) {
-  const imgEl = checkboxEl.closest("label.cell").querySelector("img");
-  imgEl.src = currentPlayer.iconChecked;
-  imgEl.dataset.checked = currentPlayer.mark;
+function updateCheckedBoardUi() {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      if (!board[i][j]) continue;
+
+      if (board[i][j] === playerX.mark) {
+        boardUi[i][j].src = playerX.iconChecked;
+        continue;
+      }
+      if (board[i][j] === playerO.mark) {
+        boardUi[i][j].src = playerO.iconChecked;
+      }
+    }
+  }
 }
 
-function updateImgHoverUi() {
-  const imgElements = document.querySelectorAll(
-    ".cell > img:not([data-checked])",
-  );
+function updateHoverBoardUi() {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      if (board[i][j]) continue;
 
-  [...imgElements].forEach((imgEl) => {
-    imgEl.src = currentPlayer.iconHover;
-  });
-}
-
-function resetUiCheckboxes() {
-  const inputElements = document.querySelectorAll(`input[type=checkbox]`);
-  [...inputElements].forEach((el) => {
-    el.checked = false;
-  });
+      boardUi[i][j].src = currentPlayer.iconHover;
+    }
+  }
 }
 
 function updateTurnUi() {
@@ -100,5 +122,7 @@ function updateScoreUi() {
 
   p1ScoreEl.textContent = score.p1;
   p2ScoreEl.textContent = score.p2;
-  tiesScoreEl = score.ties;
+  tiesScoreEl.textContent = score.ties;
 }
+
+function computeWinner() {}
