@@ -8,16 +8,28 @@ console.log(gameEl);
 
 const playerX = {
   id: 1,
-  iconChecked: "../assets/icon-x.svg",
-  iconHover: "../assets/icon-x-outline.svg",
+  iconChecked: "./assets/icon-x.svg",
+  iconHover: "./assets/icon-x-outline.svg",
   mark: "x",
 };
 
 const playerO = {
   id: 2,
-  iconChecked: "../assets/icon-o.svg",
-  iconHover: "../assets/icon-o-outline.svg",
+  iconChecked: "./assets/icon-o.svg",
+  iconHover: "./assets/icon-o-outline.svg",
   mark: "o",
+};
+
+const score = {
+  p1: 0,
+  p2: 0,
+  ties: 0,
+
+  resetScore: function () {
+    this.p1 = 0;
+    this.p2 = 0;
+    this.ties = 0;
+  },
 };
 
 const players = [playerX, playerO];
@@ -30,12 +42,31 @@ let currentPlayer = players[turn];
 console.log(currentPlayer);
 
 gameEl.addEventListener("change", (ev) => {
-  console.log(ev.target.checked);
-  console.log(ev.target);
-  console.log(ev.currentTarget);
+  console.log(`Clicked on ${ev.target}`);
+  ev.target.disabled = true;
+  updateImgCheckedUi(ev.target);
+  switchPlayer();
+  updateImgHoverUi();
 });
 
 function switchPlayer() {
   turn = (turn + 1) % 2;
   currentPlayer = players[turn];
+}
+
+function updateImgCheckedUi(checkboxEl) {
+  const imgEl = checkboxEl.closest("label.cell").querySelector("img");
+  console.log(imgEl);
+  imgEl.src = currentPlayer.iconChecked;
+  imgEl.dataset.checked = currentPlayer.mark;
+}
+
+function updateImgHoverUi() {
+  const imgElements = document.querySelectorAll(
+    ".cell > img:not([data-checked])",
+  );
+
+  [...imgElements].forEach((imgEl) => {
+    imgEl.src = currentPlayer.iconHover;
+  });
 }
