@@ -31,10 +31,7 @@ const score = {
   },
 };
 
-const winner = {
-  cells: [],
-  mark: null,
-};
+let winner = null;
 
 const board = [Array(3).fill(null), Array(3).fill(null), Array(3).fill(null)];
 const boardUi = [Array(3).fill(null), Array(3).fill(null), Array(3).fill(null)];
@@ -58,18 +55,38 @@ gameEl.addEventListener("click", (ev) => {
 
   board[i][j] = currentPlayer.mark;
 
-  console.log(`Winner is: `, computeWinner());
-
+  winner = computeWinner();
   render();
 });
 
 function render() {
   updateCheckedBoardUi();
-  switchPlayer();
+  if (winner) {
+    updateWinnerUi();
+  }
 
+  switchPlayer();
   updateHoverBoardUi();
   updateTurnUi();
   updateScoreUi();
+}
+
+function updateWinnerUi() {
+  console.log(`Found winner: `, winner);
+  console.log(winner.cells);
+  console.log(winner.mark);
+  console.log(`It was a tie: ${winner.tie}`);
+
+  let imgPath =
+    winner.mark === "x"
+      ? "./assets/icon-x-winner.svg"
+      : "./assets/icon-o-winner.svg";
+
+  for (let [i, j] of winner.cells) {
+    let cellEl = document.querySelector(`button[data-i='${i}'][data-j='${j}']`);
+    cellEl.querySelector("img").src = imgPath;
+    cellEl.classList.add(`cell--winner-${winner.mark}`);
+  }
 }
 
 function initBoardUi() {
@@ -192,6 +209,14 @@ function computeWinner() {
         [2, 0],
       ],
       mark: board[0][2],
+    };
+  }
+
+  if (board.every((arr) => arr.every((item) => item))) {
+    return {
+      cells: [],
+      mark: null,
+      tie: true,
     };
   }
 
