@@ -1,7 +1,7 @@
 "use strict";
 console.log("Hello world!");
 
-const inputOneEl = document.getElementById("cell-1");
+const mainEl = document.querySelector("main");
 const gameEl = document.querySelector(".game");
 const turnEl = document.querySelector(".turn");
 
@@ -63,6 +63,7 @@ function render() {
   updateCheckedBoardUi();
   if (winner) {
     updateWinnerUi();
+    updateModalWinnerUi();
   }
 
   switchPlayer();
@@ -87,6 +88,14 @@ function updateWinnerUi() {
     cellEl.querySelector("img").src = imgPath;
     cellEl.classList.add(`cell--winner-${winner.mark}`);
   }
+}
+
+function updateModalWinnerUi() {
+  mainEl.classList.add("modal--on");
+  mainEl.classList.add(`modal--wins-${winner.mark}`);
+
+  document.querySelector("img.modal__content__img").src =
+    `./assets/icon-${winner.mark}.svg`;
 }
 
 function initBoardUi() {
