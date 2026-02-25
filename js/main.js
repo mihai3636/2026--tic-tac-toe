@@ -10,6 +10,7 @@ const playerX = {
   iconChecked: "./assets/icon-x.svg",
   iconHover: "./assets/icon-x-outline.svg",
   mark: "x",
+  score: 0,
 };
 
 const playerO = {
@@ -17,19 +18,10 @@ const playerO = {
   iconChecked: "./assets/icon-o.svg",
   iconHover: "./assets/icon-o-outline.svg",
   mark: "o",
+  score: 0,
 };
 
-const score = {
-  p1: 0,
-  p2: 0,
-  ties: 0,
-
-  resetScore: function () {
-    this.p1 = 0;
-    this.p2 = 0;
-    this.ties = 0;
-  },
-};
+let ties = 0;
 
 let winner = null;
 
@@ -56,8 +48,24 @@ gameEl.addEventListener("click", (ev) => {
   board[i][j] = currentPlayer.mark;
 
   winner = computeWinner();
+  updateWinnerStats();
+
   render();
 });
+
+function updateWinnerStats() {
+  if (!winner) return;
+
+  if (winner.tie) {
+    ties++;
+    return;
+  }
+
+  let playerWinner = players.find((p) => p.mark === winner.mark);
+  playerWinner.score++;
+
+  console.log(`Player winner is: `, playerWinner);
+}
 
 function render() {
   updateCheckedBoardUi();
@@ -153,9 +161,9 @@ function updateScoreUi() {
   const p2ScoreEl = document.getElementById("p2Score");
   const tiesScoreEl = document.getElementById("ties");
 
-  p1ScoreEl.textContent = score.p1;
-  p2ScoreEl.textContent = score.p2;
-  tiesScoreEl.textContent = score.ties;
+  p1ScoreEl.textContent = players.find((p) => p.id === 1).score;
+  p2ScoreEl.textContent = players.find((p) => p.id === 2).score;
+  tiesScoreEl.textContent = ties;
 }
 
 function computeWinner() {
