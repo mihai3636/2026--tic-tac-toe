@@ -28,7 +28,8 @@
     <main class="tp-3" data-state="game-active">
       <section>
         <div class="overlay"></div>
-        <div class="modal modal--wins-x flow-content">
+
+        <div id="modalWinner" class="modal modal--wins-x flow-content">
           <h2 class="modal__title tp-5">YOU WON!</h2>
           <div class="modal__content tp-2">
             <img
@@ -47,6 +48,21 @@
             </button>
           </div>
         </div>
+
+        <div id="modalTies" class="modal modal--tied flow-content">
+          <div class="modal__content tp-2">
+            <span>ROUND TIED</span>
+          </div>
+          <div class="modal__footer">
+            <button class="btn btn--neutral wrapper tp-4">
+              <span>Quit</span>
+            </button>
+            <button class="btn btn--primary wrapper tp-4">
+              <span>Next Round</span>
+            </button>
+          </div>
+        </div>
+
         <div class="container">
           <article class="game tp-6 tp-6--medium">
             <img src="./assets/logo.svg" alt="logo" />

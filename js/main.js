@@ -69,8 +69,12 @@ function updateWinnerStats() {
 
 function render() {
   updateCheckedBoardUi();
+  if (winner && winner.tie) {
+    updateModalTiesUi();
+  }
+
   if (winner) {
-    updateWinnerUi();
+    updateWinnerBoardUi();
     updateModalWinnerUi();
   }
 
@@ -80,7 +84,7 @@ function render() {
   updateScoreUi();
 }
 
-function updateWinnerUi() {
+function updateWinnerBoardUi() {
   console.log(`Found winner: `, winner);
   console.log(winner.cells);
   console.log(winner.mark);
@@ -100,10 +104,19 @@ function updateWinnerUi() {
 
 function updateModalWinnerUi() {
   mainEl.classList.add("modal--on");
-  mainEl.classList.add(`modal--wins-${winner.mark}`);
+  mainEl.classList.add("modal--winner");
+
+  document
+    .getElementById("modalWinner")
+    .classList.add(`modal--wins-${winner.mark}`);
 
   document.querySelector("img.modal__content__img").src =
     `./assets/icon-${winner.mark}.svg`;
+}
+
+function updateModalTiesUi() {
+  mainEl.classList.add("modal--on");
+  mainEl.classList.add("modal--equal");
 }
 
 function initBoardUi() {
