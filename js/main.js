@@ -63,7 +63,11 @@ btnWinnerQuit.addEventListener("click", (ev) => {
 });
 
 btnWinnerNextRound.addEventListener("click", (ev) => {
+  resetBoardState();
+  render();
+
   hideModalsUi();
+  clearWinnerModalUi();
 });
 
 gameEl.addEventListener("click", (ev) => {
@@ -98,6 +102,7 @@ function updateWinnerStats() {
 }
 
 function render() {
+  console.log("Render called");
   updateCheckedBoardUi();
   if (winner && winner.tie) {
     updateModalTiesUi();
@@ -167,6 +172,7 @@ function switchPlayer() {
 }
 
 function updateCheckedBoardUi() {
+  console.log(board);
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
       if (!board[i][j]) {
@@ -316,13 +322,21 @@ function computeWinner() {
 }
 
 function resetState() {
+  resetScoreState();
+  resetBoardState();
+}
+
+function resetScoreState() {
   playerX.score = 0;
   playerO.score = 0;
   ties = 0;
+}
+
+function resetBoardState() {
+  board.forEach((arr) => arr.forEach((val, index) => (arr[index] = null)));
   winner = null;
+
   turn = -1;
   switchPlayer();
   firstRender = true;
-
-  board.forEach((arr) => arr.forEach((val, index) => (arr[index] = null)));
 }
