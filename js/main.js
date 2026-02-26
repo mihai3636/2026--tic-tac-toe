@@ -11,6 +11,9 @@ const btnRestartCancel = document.getElementById("btnRestartCancel");
 const btnWinnerQuit = document.getElementById("btnWinnerQuit");
 const btnWinnerNextRound = document.getElementById("btnWinnerNextRound");
 
+const btnTieQuit = document.getElementById("btnTieQuit");
+const btnTieNextRound = document.getElementById("btnTieNextRound");
+
 const playerX = {
   id: 1,
   iconChecked: "./assets/icon-x.svg",
@@ -68,6 +71,20 @@ btnWinnerNextRound.addEventListener("click", (ev) => {
 
   hideModalsUi();
   clearWinnerModalUi();
+});
+
+btnTieQuit.addEventListener("click", (ev) => {
+  resetState();
+  render();
+
+  hideModalsUi();
+});
+
+btnTieNextRound.addEventListener("click", (ev) => {
+  resetBoardState();
+  render();
+
+  hideModalsUi();
 });
 
 gameEl.addEventListener("click", (ev) => {
