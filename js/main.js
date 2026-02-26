@@ -7,6 +7,7 @@ const turnEl = document.querySelector(".turn");
 
 const btnRestartEl = document.getElementById("btnRestart");
 const btnRestartCancel = document.getElementById("btnRestartCancel");
+const btnRestartYes = document.getElementById("btnRestartYes");
 
 const btnWinnerQuit = document.getElementById("btnWinnerQuit");
 const btnWinnerNextRound = document.getElementById("btnWinnerNextRound");
@@ -53,6 +54,13 @@ btnRestartEl.addEventListener("click", (ev) => {
 });
 
 btnRestartCancel.addEventListener("click", (ev) => {
+  hideModalsUi();
+});
+
+btnRestartYes.addEventListener("click", (ev) => {
+  resetState();
+  render();
+
   hideModalsUi();
 });
 
