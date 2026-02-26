@@ -405,6 +405,10 @@ section {
   display: block;
 }
 
+.modal--on.modal--restart .modal.modal--restart {
+  display: block;
+}
+
 .modal__title {
   color: var(--clr-grey-2);
 }
@@ -434,13 +438,13 @@ section {
   gap: var(--sp-3);
 }
 
-.modal--tied.modal {
+.modal--two-rows.modal {
   padding-block: 3.75rem;
 }
-.modal--tied .modal__content {
+.modal--two-rows .modal__content {
   color: var(--clr-grey-2);
 }
-.modal--tied .modal__footer {
+.modal--two-rows .modal__footer {
   --flow-spacer: var(--sp-6);
 }
 

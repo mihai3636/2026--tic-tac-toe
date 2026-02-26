@@ -49,7 +49,10 @@
           </div>
         </div>
 
-        <div id="modalTies" class="modal modal--tied flow-content">
+        <div
+          id="modalTies"
+          class="modal modal--two-rows modal--tied flow-content"
+        >
           <div class="modal__content tp-2">
             <span>ROUND TIED</span>
           </div>
@@ -59,6 +62,23 @@
             </button>
             <button class="btn btn--primary wrapper tp-4">
               <span>Next Round</span>
+            </button>
+          </div>
+        </div>
+
+        <div
+          id="modalRestart"
+          class="modal modal--two-rows modal--restart flow-content"
+        >
+          <div class="modal__content tp-2">
+            <span>RESTART GAME?</span>
+          </div>
+          <div class="modal__footer">
+            <button id="btnRestartCancel" class="btn btn--neutral wrapper tp-4">
+              <span>NO, CANCEL</span>
+            </button>
+            <button class="btn btn--primary wrapper tp-4">
+              <span>YES, RESTART</span>
             </button>
           </div>
         </div>
@@ -80,7 +100,7 @@
                 <span>TURN</span>
               </div>
             </div>
-            <button class="btn btn--icon wrapper">
+            <button id="btnRestart" class="btn btn--icon wrapper">
               <div>
                 <img src="./assets/icon-restart.svg" alt="Restart" />
               </div>

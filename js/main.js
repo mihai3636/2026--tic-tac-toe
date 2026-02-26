@@ -5,6 +5,9 @@ const mainEl = document.querySelector("main");
 const gameEl = document.querySelector(".game");
 const turnEl = document.querySelector(".turn");
 
+const btnRestartEl = document.getElementById("btnRestart");
+const btnRestartCancel = document.getElementById("btnRestartCancel");
+
 const playerX = {
   id: 1,
   iconChecked: "./assets/icon-x.svg",
@@ -35,6 +38,14 @@ const TURN_O = 1;
 
 let turn = TURN_X;
 let currentPlayer = players[turn];
+
+btnRestartEl.addEventListener("click", (ev) => {
+  showRestartUi();
+});
+
+btnRestartCancel.addEventListener("click", (ev) => {
+  hideModalsUi();
+});
 
 gameEl.addEventListener("click", (ev) => {
   const cellEl = ev.target.closest(".cell");
@@ -177,6 +188,20 @@ function updateScoreUi() {
   p1ScoreEl.textContent = players.find((p) => p.id === 1).score;
   p2ScoreEl.textContent = players.find((p) => p.id === 2).score;
   tiesScoreEl.textContent = ties;
+}
+
+function showRestartUi() {
+  mainEl.classList.add("modal--on");
+  mainEl.classList.add("modal--restart");
+}
+
+function hideModalsUi() {
+  let classes = [...mainEl.classList];
+  classes.forEach((className) => {
+    if (className.startsWith("modal--")) {
+      mainEl.classList.remove(className);
+    }
+  });
 }
 
 function computeWinner() {

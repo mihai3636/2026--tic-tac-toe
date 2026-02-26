@@ -51,6 +51,12 @@ section {
   }
 }
 
+.modal--on.modal--restart {
+  .modal.modal--restart {
+    display: block;
+  }
+}
+
 .modal__title {
   color: var(--clr-grey-2);
 }
@@ -81,7 +87,7 @@ section {
   gap: var(--sp-3);
 }
 
-.modal--tied {
+.modal--two-rows {
   &.modal {
     padding-block: toRem(60px);
   }
