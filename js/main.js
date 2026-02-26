@@ -8,6 +8,9 @@ const turnEl = document.querySelector(".turn");
 const btnRestartEl = document.getElementById("btnRestart");
 const btnRestartCancel = document.getElementById("btnRestartCancel");
 
+const btnWinnerQuit = document.getElementById("btnWinnerQuit");
+const btnWinnerNextRound = document.getElementById("btnWinnerNextRound");
+
 const playerX = {
   id: 1,
   iconChecked: "./assets/icon-x.svg",
@@ -25,12 +28,12 @@ const playerO = {
 };
 
 let ties = 0;
+let firstRender = true;
 
 let winner = null;
 
 const board = [Array(3).fill(null), Array(3).fill(null), Array(3).fill(null)];
 const boardUi = [Array(3).fill(null), Array(3).fill(null), Array(3).fill(null)];
-initBoardUi();
 
 const players = [playerX, playerO];
 const TURN_X = 0;
@@ -39,11 +42,27 @@ const TURN_O = 1;
 let turn = TURN_X;
 let currentPlayer = players[turn];
 
+initBoardUi();
+render();
+
 btnRestartEl.addEventListener("click", (ev) => {
   showRestartUi();
 });
 
 btnRestartCancel.addEventListener("click", (ev) => {
+  hideModalsUi();
+});
+
+btnWinnerQuit.addEventListener("click", (ev) => {
+  console.log("Btn winner quit clicked");
+  resetState();
+  render();
+
+  hideModalsUi();
+  clearWinnerModalUi();
+});
+
+btnWinnerNextRound.addEventListener("click", (ev) => {
   hideModalsUi();
 });
 
@@ -89,7 +108,12 @@ function render() {
     updateModalWinnerUi();
   }
 
-  switchPlayer();
+  if (!firstRender) {
+    switchPlayer();
+  } else {
+    firstRender = false;
+  }
+
   updateHoverBoardUi();
   updateTurnUi();
   updateScoreUi();
@@ -145,7 +169,14 @@ function switchPlayer() {
 function updateCheckedBoardUi() {
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
-      if (!board[i][j]) continue;
+      if (!board[i][j]) {
+        let cellEl = boardUi[i][j].closest(".cell");
+        cellEl.classList.remove("cell--winner-x");
+        cellEl.classList.remove("cell--winner-o");
+        cellEl.disabled = false;
+
+        continue;
+      }
 
       if (board[i][j] === playerX.mark) {
         boardUi[i][j].src = playerX.iconChecked;
@@ -202,6 +233,12 @@ function hideModalsUi() {
       mainEl.classList.remove(className);
     }
   });
+}
+
+function clearWinnerModalUi() {
+  let modalEl = document.getElementById("modalWinner");
+  modalEl.classList.remove("modal--wins-x");
+  modalEl.classList.remove("modal--wins-o");
 }
 
 function computeWinner() {
@@ -276,4 +313,16 @@ function computeWinner() {
   }
 
   return null;
+}
+
+function resetState() {
+  playerX.score = 0;
+  playerO.score = 0;
+  ties = 0;
+  winner = null;
+  turn = -1;
+  switchPlayer();
+  firstRender = true;
+
+  board.forEach((arr) => arr.forEach((val, index) => (arr[index] = null)));
 }
