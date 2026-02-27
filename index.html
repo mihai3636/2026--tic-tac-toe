@@ -25,7 +25,7 @@
     <title>Tic Tac Toe</title>
   </head>
   <body>
-    <main class="tp-3" data-state="game-actives">
+    <main class="tp-3" data-state="game-inactive">
       <section>
         <div class="overlay"></div>
 
@@ -154,16 +154,16 @@
               </button>
             </div>
             <div class="game__info game__info--p1">
-              <p>X (<span id="p1">YOU</span>)</p>
-              <p class="tp-3" id="p1Score">0</p>
+              <p>X (<span id="playerLabelX">YOU</span>)</p>
+              <p class="tp-3" id="scoreX">0</p>
             </div>
             <div class="game__info game__info--ties">
               <p>TIES</p>
               <p class="tp-3" id="ties">0</p>
             </div>
             <div class="game__info game__info--p2">
-              <p>O (<span id="p2">CPU</span>)</p>
-              <p class="tp-3" id="p2Score">0</p>
+              <p>O (<span id="playerLabelO">CPU</span>)</p>
+              <p class="tp-3" id="scoreO">0</p>
             </div>
           </article>
 
@@ -179,14 +179,24 @@
                 <h2 class="tp-4">PICK PLAYER 1'S MARK</h2>
                 <fieldset class="toggle split">
                   <label class="toggle__option">
-                    <input id="radioX" type="radio" name="playerMark" />
+                    <input
+                      id="radioX"
+                      type="radio"
+                      name="playerMark"
+                      value="x"
+                    />
                     <div class="shape-x">
                       <div class="shape-x__bar"></div>
                       <div class="shape-x__bar"></div>
                     </div>
                   </label>
                   <label class="toggle__option">
-                    <input id="radioO" type="radio" name="playerMark" />
+                    <input
+                      id="radioO"
+                      type="radio"
+                      name="playerMark"
+                      value="o"
+                    />
                     <div class="shape-o">
                       <div class="shape-o__inner"></div>
                     </div>
@@ -200,7 +210,10 @@
               <button class="btn btn--primary wrapper tp-4">
                 <span>New Game (VS CPU)</span>
               </button>
-              <button class="btn btn--accent wrapper tp-4">
+              <button
+                id="btnNewGamePlayer"
+                class="btn btn--accent wrapper tp-4"
+              >
                 <span>New Game (VS PLAYER)</span>
               </button>
             </div>

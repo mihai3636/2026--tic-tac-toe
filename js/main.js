@@ -5,6 +5,8 @@ const mainEl = document.querySelector("main");
 const gameEl = document.querySelector(".game");
 const turnEl = document.querySelector(".turn");
 
+const btnNewGamePlayerEl = document.getElementById("btnNewGamePlayer");
+
 const btnRestartEl = document.getElementById("btnRestart");
 const btnRestartCancel = document.getElementById("btnRestartCancel");
 const btnRestartYes = document.getElementById("btnRestartYes");
@@ -48,6 +50,13 @@ let currentPlayer = players[turn];
 
 initBoardUi();
 render();
+
+btnNewGamePlayerEl.addEventListener("click", (ev) => {
+  initPlayerIds();
+  initPlayerScoreLabels();
+
+  mainEl.dataset.state = "game-active";
+});
 
 btnRestartEl.addEventListener("click", (ev) => {
   showRestartUi();
@@ -243,13 +252,38 @@ function updateTurnUi() {
 }
 
 function updateScoreUi() {
-  const p1ScoreEl = document.getElementById("p1Score");
-  const p2ScoreEl = document.getElementById("p2Score");
+  const scoreXEl = document.getElementById("scoreX");
+  const scoreOEl = document.getElementById("scoreO");
   const tiesScoreEl = document.getElementById("ties");
 
-  p1ScoreEl.textContent = players.find((p) => p.id === 1).score;
-  p2ScoreEl.textContent = players.find((p) => p.id === 2).score;
+  scoreXEl.textContent = players.find((p) => p.mark === "x").score;
+  scoreOEl.textContent = players.find((p) => p.mark === "o").score;
   tiesScoreEl.textContent = ties;
+}
+
+function initPlayerIds() {
+  const playerOneSelectedMark = getPlayerOneSelectedMark();
+
+  players.find((p) => p.mark === playerOneSelectedMark).id = 1;
+  players.find((p) => p.mark !== playerOneSelectedMark).id = 2;
+}
+
+function initPlayerScoreLabels() {
+  const labelPlayerX = document.getElementById("playerLabelX");
+  const labelPlayerO = document.getElementById("playerLabelO");
+
+  labelPlayerX.textContent = `P${playerX.id}`;
+  labelPlayerO.textContent = `P${playerO.id}`;
+
+  const playerOneSelectedMark = getPlayerOneSelectedMark();
+
+  // if (playerOneSelectedMark === "x") {
+  //   labelPlayerX.textContent = "P1";
+  //   labelPlayerO.textContent = "P2";
+  // } else {
+  //   labelPlayerO.textContent = "P1";
+  //   labelPlayerX.textContent = "P2";
+  // }
 }
 
 function showRestartUi() {
@@ -364,4 +398,16 @@ function resetBoardState() {
   turn = -1;
   switchPlayer();
   firstRender = true;
+}
+
+function getPlayerOneSelectedMark() {
+  const selectedRadio = document.querySelector(
+    'input[name="playerMark"]:checked',
+  );
+  if (!selectedRadio) {
+    console.log("Nothing selected");
+    return;
+  }
+
+  return selectedRadio.value;
 }

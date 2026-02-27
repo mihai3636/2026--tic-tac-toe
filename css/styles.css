@@ -223,7 +223,7 @@ main[data-state=game-active] article.game {
   display: inline-block;
 }
 
-.turn--x .shape-o {
+.turn--o .shape-x {
   display: none;
 }
 
