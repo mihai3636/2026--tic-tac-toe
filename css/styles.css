@@ -215,12 +215,16 @@ main[data-state=game-active] article.game {
 }
 
 .shape-x {
-  display: none;
+  display: inline-block;
   transform: rotateZ(45deg);
 }
 
 .turn--x .shape-x {
   display: inline-block;
+}
+
+.turn--x .shape-o {
+  display: none;
 }
 
 .shape-x__bar {
@@ -241,9 +245,13 @@ main[data-state=game-active] article.game {
   aspect-ratio: 1;
   border-radius: 50%;
   background-color: var(--clr-shape, var(--clr-grey-2));
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.turn--x .shape-o {
+  display: none;
 }
 
 .turn--o .shape-o {
