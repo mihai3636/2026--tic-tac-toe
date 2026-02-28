@@ -1,11 +1,30 @@
 "use strict";
 
-import { initModalWinner, initModalTie, initModalRestart } from "./modals.js";
-import { updateTurnUi, updateScoreUi, TURN_X, TURN_O } from "./stats.js";
+import {
+  initModalWinner,
+  initModalTie,
+  initModalRestart,
+  updateModalWinnerUi,
+  updateModalTiesUi,
+} from "./modals.js";
+import {
+  updateTurnUi,
+  updateScoreUi,
+  updateGameStatusUi,
+  initPlayerScoreLabelsUi,
+  TURN_X,
+  TURN_O,
+} from "./stats.js";
 import { initMenu } from "./menu.js";
 
+import {
+  initBoard,
+  updateCheckedBoardUi,
+  updateWinnerBoardUi,
+  updateHoverBoardUi,
+} from "./board.js";
+
 const mainEl = document.querySelector("main");
-const gameEl = document.querySelector(".game");
 
 const playerX = {
   id: 1,
@@ -33,7 +52,6 @@ let firstRender = true;
 let winner = null;
 
 const board = [Array(3).fill(null), Array(3).fill(null), Array(3).fill(null)];
-const boardUi = [Array(3).fill(null), Array(3).fill(null), Array(3).fill(null)];
 
 const players = [playerX, playerO];
 
@@ -76,25 +94,54 @@ initModalRestart(function () {
   render();
 });
 
-initBoardUi();
+initBoard({
+  onCellClicked: function (ev) {
+    const cellEl = ev.target.closest(".cell");
+    if (!cellEl) return;
+
+    cellEl.disabled = true;
+
+    const i = Number(cellEl.dataset.i);
+    const j = Number(cellEl.dataset.j);
+
+    board[i][j] = currentPlayer.mark;
+
+    winner = computeWinner();
+    updateWinnerStats();
+
+    render();
+  },
+});
+
 render();
 
-gameEl.addEventListener("click", (ev) => {
-  const cellEl = ev.target.closest(".cell");
-  if (!cellEl) return;
+function render() {
+  updateGameStatusUi(gameStatus);
+  if (gameStatus === GAME_STATUS_MENU) {
+    return;
+  }
+  initPlayerScoreLabelsUi({ playerX, playerO });
 
-  cellEl.disabled = true;
+  updateCheckedBoardUi({ board, playerX, playerO });
+  if (winner && winner.tie) {
+    updateModalTiesUi();
+  }
 
-  const i = Number(cellEl.dataset.i);
-  const j = Number(cellEl.dataset.j);
+  if (winner && winner.mark) {
+    updateWinnerBoardUi(winner);
+    updateModalWinnerUi({ players, winner });
+  }
 
-  board[i][j] = currentPlayer.mark;
+  if (!firstRender) {
+    switchPlayer();
+  } else {
+    firstRender = false;
+  }
 
-  winner = computeWinner();
-  updateWinnerStats();
-
-  render();
-});
+  updateHoverBoardUi({ board, currentPlayer });
+  updateTurnUi(turn);
+  updateScoreUi(players, ties);
+}
 
 function updateWinnerStats() {
   if (!winner) return;
@@ -108,115 +155,9 @@ function updateWinnerStats() {
   playerWinner.score++;
 }
 
-function render() {
-  updateGameStatusUi();
-  if (gameStatus === GAME_STATUS_MENU) {
-    return;
-  }
-  initPlayerScoreLabelsUi();
-
-  updateCheckedBoardUi();
-  if (winner && winner.tie) {
-    updateModalTiesUi();
-  }
-
-  if (winner && winner.mark) {
-    updateWinnerBoardUi();
-    updateModalWinnerUi();
-  }
-
-  if (!firstRender) {
-    switchPlayer();
-  } else {
-    firstRender = false;
-  }
-
-  updateHoverBoardUi();
-  updateTurnUi(turn);
-  updateScoreUi(players, ties);
-}
-
-function updateGameStatusUi() {
-  mainEl.dataset.state = `game-${gameStatus}`;
-}
-
-function updateWinnerBoardUi() {
-  let imgPath =
-    winner.mark === "x"
-      ? "./assets/icon-x-winner.svg"
-      : "./assets/icon-o-winner.svg";
-
-  for (let [i, j] of winner.cells) {
-    let cellEl = document.querySelector(`button[data-i='${i}'][data-j='${j}']`);
-    cellEl.querySelector("img").src = imgPath;
-    cellEl.classList.add(`cell--winner-${winner.mark}`);
-  }
-}
-
-function updateModalWinnerUi() {
-  mainEl.classList.add("modal--on");
-  mainEl.classList.add("modal--winner");
-
-  const modalWinnerEl = document.getElementById("modalWinner");
-  const modalWinnerTitleEl = document.getElementById("modalWinnerTitle");
-
-  const winnerPlayer = players.find((p) => p.mark === winner.mark);
-
-  modalWinnerEl.classList.add(`modal--wins-${winner.mark}`);
-  modalWinnerTitleEl.textContent = `PLAYER ${winnerPlayer.id} WINS!`;
-
-  document.querySelector("img.modal__content__img").src =
-    `./assets/icon-${winner.mark}.svg`;
-}
-
-function updateModalTiesUi() {
-  mainEl.classList.add("modal--on");
-  mainEl.classList.add("modal--equal");
-}
-
-function initBoardUi() {
-  const cellEls = document.querySelectorAll(".cell");
-  [...cellEls].forEach((el) => {
-    boardUi[el.dataset.i][el.dataset.j] = el.querySelector("img");
-  });
-}
-
 function switchPlayer() {
   turn = (turn + 1) % 2;
   currentPlayer = players[turn];
-}
-
-function updateCheckedBoardUi() {
-  for (let i = 0; i < board.length; i++) {
-    for (let j = 0; j < board[i].length; j++) {
-      if (!board[i][j]) {
-        let cellEl = boardUi[i][j].closest(".cell");
-        cellEl.classList.remove("cell--winner-x");
-        cellEl.classList.remove("cell--winner-o");
-        cellEl.disabled = false;
-
-        continue;
-      }
-
-      if (board[i][j] === playerX.mark) {
-        boardUi[i][j].src = playerX.iconChecked;
-        continue;
-      }
-      if (board[i][j] === playerO.mark) {
-        boardUi[i][j].src = playerO.iconChecked;
-      }
-    }
-  }
-}
-
-function updateHoverBoardUi() {
-  for (let i = 0; i < board.length; i++) {
-    for (let j = 0; j < board[i].length; j++) {
-      if (board[i][j]) continue;
-
-      boardUi[i][j].src = currentPlayer.iconHover;
-    }
-  }
 }
 
 function initPlayerIds() {
@@ -224,14 +165,6 @@ function initPlayerIds() {
 
   players.find((p) => p.mark === playerOneSelectedMark).id = 1;
   players.find((p) => p.mark !== playerOneSelectedMark).id = 2;
-}
-
-function initPlayerScoreLabelsUi() {
-  const labelPlayerX = document.getElementById("playerLabelX");
-  const labelPlayerO = document.getElementById("playerLabelO");
-
-  labelPlayerX.textContent = `P${playerX.id}`;
-  labelPlayerO.textContent = `P${playerO.id}`;
 }
 
 function computeWinner() {

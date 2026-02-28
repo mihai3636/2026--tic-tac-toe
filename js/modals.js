@@ -53,6 +53,27 @@ export function initModalRestart(onRestart) {
   });
 }
 
+export function updateModalWinnerUi({ players, winner }) {
+  mainEl.classList.add("modal--on");
+  mainEl.classList.add("modal--winner");
+
+  const modalWinnerEl = document.getElementById("modalWinner");
+  const modalWinnerTitleEl = document.getElementById("modalWinnerTitle");
+
+  const winnerPlayer = players.find((p) => p.mark === winner.mark);
+
+  modalWinnerEl.classList.add(`modal--wins-${winner.mark}`);
+  modalWinnerTitleEl.textContent = `PLAYER ${winnerPlayer.id} WINS!`;
+
+  document.querySelector("img.modal__content__img").src =
+    `./assets/icon-${winner.mark}.svg`;
+}
+
+export function updateModalTiesUi() {
+  mainEl.classList.add("modal--on");
+  mainEl.classList.add("modal--equal");
+}
+
 function hideModalsUi() {
   let classes = [...mainEl.classList];
   classes.forEach((className) => {
