@@ -190,6 +190,28 @@ function renderStatsAndMisc() {
   updateScoreUi(players, ties);
 }
 
+/********     STATE METHODS                                 ******** */
+
+function placeMovementAndCheckWinner(row, col, mark) {
+  board[row][col] = mark;
+  winner = computeWinner(board);
+  updateWinnerStats();
+
+  switchPlayer();
+}
+
+function playCpuMove() {
+  let movement = computeNextBestMove(
+    board,
+    GOAL_MAX,
+    currentPlayer.mark,
+    currentPlayer.mark,
+  );
+
+  if (movement.i === null || movement.j === null) return;
+  placeMovementAndCheckWinner(movement.i, movement.j, currentPlayer.mark);
+}
+
 function updateWinnerStats() {
   if (!winner) return;
 
@@ -243,24 +265,4 @@ function getPlayerOneSelectedMark() {
   }
 
   return selectedRadio.value;
-}
-
-function placeMovementAndCheckWinner(row, col, mark) {
-  board[row][col] = mark;
-  winner = computeWinner(board);
-  updateWinnerStats();
-
-  switchPlayer();
-}
-
-function playCpuMove() {
-  let movement = computeNextBestMove(
-    board,
-    GOAL_MAX,
-    currentPlayer.mark,
-    currentPlayer.mark,
-  );
-
-  if (movement.i === null || movement.j === null) return;
-  placeMovementAndCheckWinner(movement.i, movement.j, currentPlayer.mark);
 }
