@@ -51,7 +51,6 @@ const GAME_STATUS_ACTIVE = "active";
 let gameStatus = GAME_STATUS_MENU;
 
 let ties = 0;
-let firstRender = true;
 
 let winner = null;
 
@@ -75,7 +74,6 @@ initBoard({
     const j = Number(cellEl.dataset.j);
 
     placeMovementAndCheckWinner(i, j, currentPlayer.mark);
-    render();
 
     if (gameMode === GAME_MODE_CPU && !winner) {
       playCpuMove();
@@ -89,7 +87,6 @@ initMenu({
     gameStatus = GAME_STATUS_ACTIVE;
     gameMode = GAME_MODE_PLAYER;
 
-    renderGameStatus();
     render();
   },
   onNewGameCpu: function () {
@@ -97,7 +94,6 @@ initMenu({
     gameStatus = GAME_STATUS_ACTIVE;
     gameMode = GAME_MODE_CPU;
 
-    renderGameStatus();
     render();
 
     if (currentPlayer.id === 2) {
@@ -114,7 +110,9 @@ initModalWinner({
 
   onNextRound: function () {
     resetBoardState();
-    render();
+
+    renderBoard();
+    renderStatsAndMisc();
 
     if (gameMode === GAME_MODE_CPU && currentPlayer.id === 2) {
       playCpuMove();
@@ -130,7 +128,9 @@ initModalTie({
 
   onNextRound: function () {
     resetBoardState();
-    render();
+
+    renderBoard();
+    renderStatsAndMisc();
     if (gameMode === GAME_MODE_CPU && currentPlayer.id === 2) {
       playCpuMove();
     }
@@ -144,6 +144,12 @@ initModalRestart(function () {
 
 render();
 
+function render() {
+  renderGameStatus();
+  renderBoard();
+  renderStatsAndMisc();
+}
+
 function renderGameStatus() {
   updateGameStatusUi(gameStatus);
   if (gameStatus === GAME_STATUS_ACTIVE) {
@@ -151,7 +157,7 @@ function renderGameStatus() {
   }
 }
 
-function render() {
+function renderBoard() {
   updateCheckedBoardUi({ board, playerX, playerO });
   if (winner && winner.tie) {
     updateModalTiesUi();
@@ -161,19 +167,17 @@ function render() {
     updateWinnerBoardUi(winner);
     updateModalWinnerUi({ players, winner });
   }
+}
 
-  if (!firstRender) {
-    switchPlayer();
-  } else {
-    firstRender = false;
-  }
-
+function renderStatsAndMisc() {
   updateHoverBoardUi({ board, currentPlayer });
   updateTurnUi(turn);
   updateScoreUi(players, ties);
 }
 
 function updateWinnerStats() {
+  if (!winner) return;
+
   if (winner.tie) {
     ties++;
     return;
@@ -211,9 +215,8 @@ function resetBoardState() {
   board.forEach((arr) => arr.forEach((val, index) => (arr[index] = null)));
   winner = null;
 
-  turn = -1;
-  switchPlayer();
-  firstRender = true;
+  turn = 0;
+  currentPlayer = players[turn];
 }
 
 function getPlayerOneSelectedMark() {
@@ -230,9 +233,11 @@ function getPlayerOneSelectedMark() {
 function placeMovementAndCheckWinner(row, col, mark) {
   board[row][col] = mark;
   winner = computeWinner(board);
-
-  if (!winner) return;
   updateWinnerStats();
+
+  renderBoard();
+  switchPlayer();
+  renderStatsAndMisc();
 }
 
 function playCpuMove() {
@@ -245,5 +250,4 @@ function playCpuMove() {
 
   if (movement.i === null || movement.j === null) return;
   placeMovementAndCheckWinner(movement.i, movement.j, currentPlayer.mark);
-  render();
 }
