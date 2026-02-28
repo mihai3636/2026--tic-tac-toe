@@ -75,8 +75,14 @@ initBoard({
 
     placeMovementAndCheckWinner(i, j, currentPlayer.mark);
 
+    renderBoard();
+    renderStatsAndMisc();
+
     if (gameMode === GAME_MODE_CPU && !winner) {
       playCpuMove();
+
+      renderBoard();
+      renderStatsAndMisc();
     }
   },
 });
@@ -98,6 +104,9 @@ initMenu({
 
     if (currentPlayer.id === 2) {
       playCpuMove();
+
+      renderBoard();
+      renderStatsAndMisc();
     }
   },
 });
@@ -116,6 +125,9 @@ initModalWinner({
 
     if (gameMode === GAME_MODE_CPU && currentPlayer.id === 2) {
       playCpuMove();
+
+      renderBoard();
+      renderStatsAndMisc();
     }
   },
 });
@@ -133,6 +145,9 @@ initModalTie({
     renderStatsAndMisc();
     if (gameMode === GAME_MODE_CPU && currentPlayer.id === 2) {
       playCpuMove();
+
+      renderBoard();
+      renderStatsAndMisc();
     }
   },
 });
@@ -235,9 +250,7 @@ function placeMovementAndCheckWinner(row, col, mark) {
   winner = computeWinner(board);
   updateWinnerStats();
 
-  renderBoard();
   switchPlayer();
-  renderStatsAndMisc();
 }
 
 function playCpuMove() {
