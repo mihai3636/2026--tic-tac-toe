@@ -12,8 +12,9 @@ export function initBoard({ onCellClicked }) {
 export function updateCheckedBoardUi({ board, playerX, playerO }) {
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
+      let cellEl = boardUi[i][j].closest(".cell");
+
       if (!board[i][j]) {
-        let cellEl = boardUi[i][j].closest(".cell");
         cellEl.classList.remove("cell--winner-x");
         cellEl.classList.remove("cell--winner-o");
         cellEl.disabled = false;
@@ -21,6 +22,7 @@ export function updateCheckedBoardUi({ board, playerX, playerO }) {
         continue;
       }
 
+      cellEl.disabled = true;
       if (board[i][j] === playerX.mark) {
         boardUi[i][j].src = playerX.iconChecked;
         continue;

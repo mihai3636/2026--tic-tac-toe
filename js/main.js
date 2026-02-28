@@ -24,6 +24,10 @@ import {
   updateHoverBoardUi,
 } from "./board.js";
 
+import { computeWinner } from "./utilsBoard.js";
+
+import { computeNextBestMove, GOAL_MAX, GOAL_MIN } from "./bot.js";
+
 const mainEl = document.querySelector("main");
 
 const playerX = {
@@ -58,11 +62,46 @@ const players = [playerX, playerO];
 let turn = TURN_X;
 let currentPlayer = players[turn];
 
-initMenu(function () {
-  initPlayerIds();
-  gameStatus = GAME_STATUS_ACTIVE;
+const GAME_MODE_CPU = "GAME_MODE_CPU";
+const GAME_MODE_PLAYER = "GAME_MODE_PLAYER";
+let gameMode = null;
 
-  render();
+initBoard({
+  onCellClicked: function (ev) {
+    const cellEl = ev.target.closest(".cell");
+    if (!cellEl) return;
+
+    const i = Number(cellEl.dataset.i);
+    const j = Number(cellEl.dataset.j);
+
+    placeMovementAndCheckWinner(i, j, currentPlayer.mark);
+    render();
+
+    if (gameMode === GAME_MODE_CPU && !winner) {
+      playCpuMove();
+    }
+  },
+});
+
+initMenu({
+  onNewGamePlayer: function () {
+    initPlayerIds();
+    gameStatus = GAME_STATUS_ACTIVE;
+    gameMode = GAME_MODE_PLAYER;
+
+    render();
+  },
+  onNewGameCpu: function () {
+    initPlayerIds();
+    gameStatus = GAME_STATUS_ACTIVE;
+    gameMode = GAME_MODE_CPU;
+
+    render();
+
+    if (currentPlayer.id === 2) {
+      playCpuMove();
+    }
+  },
 });
 
 initModalWinner({
@@ -74,6 +113,10 @@ initModalWinner({
   onNextRound: function () {
     resetBoardState();
     render();
+
+    if (gameMode === GAME_MODE_CPU && currentPlayer.id === 2) {
+      playCpuMove();
+    }
   },
 });
 
@@ -86,31 +129,15 @@ initModalTie({
   onNextRound: function () {
     resetBoardState();
     render();
+    if (gameMode === GAME_MODE_CPU && currentPlayer.id === 2) {
+      playCpuMove();
+    }
   },
 });
 
 initModalRestart(function () {
   resetState();
   render();
-});
-
-initBoard({
-  onCellClicked: function (ev) {
-    const cellEl = ev.target.closest(".cell");
-    if (!cellEl) return;
-
-    cellEl.disabled = true;
-
-    const i = Number(cellEl.dataset.i);
-    const j = Number(cellEl.dataset.j);
-
-    board[i][j] = currentPlayer.mark;
-
-    winner = computeWinner();
-    updateWinnerStats();
-
-    render();
-  },
 });
 
 render();
@@ -144,8 +171,6 @@ function render() {
 }
 
 function updateWinnerStats() {
-  if (!winner) return;
-
   if (winner.tie) {
     ties++;
     return;
@@ -165,80 +190,6 @@ function initPlayerIds() {
 
   players.find((p) => p.mark === playerOneSelectedMark).id = 1;
   players.find((p) => p.mark !== playerOneSelectedMark).id = 2;
-}
-
-function computeWinner() {
-  for (let i = 0; i < board.length; i++) {
-    if (
-      board[i][0] &&
-      board[i][0] === board[i][1] &&
-      board[i][1] === board[i][2]
-    ) {
-      return {
-        cells: [
-          [i, 0],
-          [i, 1],
-          [i, 2],
-        ],
-        mark: board[i][0],
-      };
-    }
-
-    if (
-      board[0][i] &&
-      board[0][i] === board[1][i] &&
-      board[1][i] === board[2][i]
-    ) {
-      return {
-        cells: [
-          [0, i],
-          [1, i],
-          [2, i],
-        ],
-        mark: board[0][i],
-      };
-    }
-  }
-
-  if (
-    board[0][0] &&
-    board[0][0] === board[1][1] &&
-    board[1][1] === board[2][2]
-  ) {
-    return {
-      cells: [
-        [0, 0],
-        [1, 1],
-        [2, 2],
-      ],
-      mark: board[0][0],
-    };
-  }
-
-  if (
-    board[0][2] &&
-    board[0][2] === board[1][1] &&
-    board[1][1] === board[2][0]
-  ) {
-    return {
-      cells: [
-        [0, 2],
-        [1, 1],
-        [2, 0],
-      ],
-      mark: board[0][2],
-    };
-  }
-
-  if (board.every((arr) => arr.every((item) => item))) {
-    return {
-      cells: [],
-      mark: null,
-      tie: true,
-    };
-  }
-
-  return null;
 }
 
 function resetState() {
@@ -271,4 +222,25 @@ function getPlayerOneSelectedMark() {
   }
 
   return selectedRadio.value;
+}
+
+function placeMovementAndCheckWinner(row, col, mark) {
+  board[row][col] = mark;
+  winner = computeWinner(board);
+
+  if (!winner) return;
+  updateWinnerStats();
+}
+
+function playCpuMove() {
+  let movement = computeNextBestMove(
+    board,
+    GOAL_MAX,
+    currentPlayer.mark,
+    currentPlayer.mark,
+  );
+
+  if (movement.i === null || movement.j === null) return;
+  placeMovementAndCheckWinner(movement.i, movement.j, currentPlayer.mark);
+  render();
 }
