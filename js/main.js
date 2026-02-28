@@ -32,6 +32,10 @@ const playerO = {
   score: 0,
 };
 
+const GAME_STATUS_MENU = "menu";
+const GAME_STATUS_ACTIVE = "active";
+let gameStatus = GAME_STATUS_MENU;
+
 let ties = 0;
 let firstRender = true;
 
@@ -52,9 +56,9 @@ render();
 
 btnNewGamePlayerEl.addEventListener("click", (ev) => {
   initPlayerIds();
-  initPlayerScoreLabels();
+  gameStatus = GAME_STATUS_ACTIVE;
 
-  mainEl.dataset.state = "game-active";
+  render();
 });
 
 btnRestartEl.addEventListener("click", (ev) => {
@@ -132,6 +136,12 @@ function updateWinnerStats() {
 }
 
 function render() {
+  updateGameStatusUi();
+  if (gameStatus === GAME_STATUS_MENU) {
+    return;
+  }
+  initPlayerScoreLabelsUi();
+
   updateCheckedBoardUi();
   if (winner && winner.tie) {
     updateModalTiesUi();
@@ -151,6 +161,10 @@ function render() {
   updateHoverBoardUi();
   updateTurnUi();
   updateScoreUi();
+}
+
+function updateGameStatusUi() {
+  mainEl.dataset.state = `game-${gameStatus}`;
 }
 
 function updateWinnerBoardUi() {
@@ -260,7 +274,7 @@ function initPlayerIds() {
   players.find((p) => p.mark !== playerOneSelectedMark).id = 2;
 }
 
-function initPlayerScoreLabels() {
+function initPlayerScoreLabelsUi() {
   const labelPlayerX = document.getElementById("playerLabelX");
   const labelPlayerO = document.getElementById("playerLabelO");
 
@@ -363,6 +377,7 @@ function computeWinner() {
 }
 
 function resetState() {
+  gameStatus = GAME_STATUS_MENU;
   resetScoreState();
   resetBoardState();
 }
