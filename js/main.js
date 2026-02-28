@@ -1,20 +1,12 @@
 "use strict";
 
+import { initModalWinner, initModalTie, initModalRestart } from "./modals.js";
+
 const mainEl = document.querySelector("main");
 const gameEl = document.querySelector(".game");
 const turnEl = document.querySelector(".turn");
 
 const btnNewGamePlayerEl = document.getElementById("btnNewGamePlayer");
-
-const btnRestartEl = document.getElementById("btnRestart");
-const btnRestartCancel = document.getElementById("btnRestartCancel");
-const btnRestartYes = document.getElementById("btnRestartYes");
-
-const btnWinnerQuit = document.getElementById("btnWinnerQuit");
-const btnWinnerNextRound = document.getElementById("btnWinnerNextRound");
-
-const btnTieQuit = document.getElementById("btnTieQuit");
-const btnTieNextRound = document.getElementById("btnTieNextRound");
 
 const playerX = {
   id: 1,
@@ -51,6 +43,35 @@ const TURN_O = 1;
 let turn = TURN_X;
 let currentPlayer = players[turn];
 
+initModalWinner({
+  onQuit: function () {
+    resetState();
+    render();
+  },
+
+  onNextRound: function () {
+    resetBoardState();
+    render();
+  },
+});
+
+initModalTie({
+  onQuit: function () {
+    resetState();
+    render();
+  },
+
+  onNextRound: function () {
+    resetBoardState();
+    render();
+  },
+});
+
+initModalRestart(function () {
+  resetState();
+  render();
+});
+
 initBoardUi();
 render();
 
@@ -59,51 +80,6 @@ btnNewGamePlayerEl.addEventListener("click", (ev) => {
   gameStatus = GAME_STATUS_ACTIVE;
 
   render();
-});
-
-btnRestartEl.addEventListener("click", (ev) => {
-  showRestartUi();
-});
-
-btnRestartCancel.addEventListener("click", (ev) => {
-  hideModalsUi();
-});
-
-btnRestartYes.addEventListener("click", (ev) => {
-  resetState();
-  render();
-
-  hideModalsUi();
-});
-
-btnWinnerQuit.addEventListener("click", (ev) => {
-  resetState();
-  render();
-
-  hideModalsUi();
-  clearWinnerModalUi();
-});
-
-btnWinnerNextRound.addEventListener("click", (ev) => {
-  resetBoardState();
-  render();
-
-  hideModalsUi();
-  clearWinnerModalUi();
-});
-
-btnTieQuit.addEventListener("click", (ev) => {
-  resetState();
-  render();
-
-  hideModalsUi();
-});
-
-btnTieNextRound.addEventListener("click", (ev) => {
-  resetBoardState();
-  render();
-
-  hideModalsUi();
 });
 
 gameEl.addEventListener("click", (ev) => {
@@ -147,7 +123,7 @@ function render() {
     updateModalTiesUi();
   }
 
-  if (winner) {
+  if (winner && winner.mark) {
     updateWinnerBoardUi();
     updateModalWinnerUi();
   }
@@ -280,26 +256,6 @@ function initPlayerScoreLabelsUi() {
 
   labelPlayerX.textContent = `P${playerX.id}`;
   labelPlayerO.textContent = `P${playerO.id}`;
-}
-
-function showRestartUi() {
-  mainEl.classList.add("modal--on");
-  mainEl.classList.add("modal--restart");
-}
-
-function hideModalsUi() {
-  let classes = [...mainEl.classList];
-  classes.forEach((className) => {
-    if (className.startsWith("modal--")) {
-      mainEl.classList.remove(className);
-    }
-  });
-}
-
-function clearWinnerModalUi() {
-  let modalEl = document.getElementById("modalWinner");
-  modalEl.classList.remove("modal--wins-x");
-  modalEl.classList.remove("modal--wins-o");
 }
 
 function computeWinner() {
