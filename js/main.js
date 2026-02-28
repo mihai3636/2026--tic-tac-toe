@@ -1,5 +1,4 @@
 "use strict";
-console.log("Hello world!");
 
 const mainEl = document.querySelector("main");
 const gameEl = document.querySelector(".game");
@@ -74,7 +73,6 @@ btnRestartYes.addEventListener("click", (ev) => {
 });
 
 btnWinnerQuit.addEventListener("click", (ev) => {
-  console.log("Btn winner quit clicked");
   resetState();
   render();
 
@@ -131,12 +129,9 @@ function updateWinnerStats() {
 
   let playerWinner = players.find((p) => p.mark === winner.mark);
   playerWinner.score++;
-
-  console.log(`Player winner is: `, playerWinner);
 }
 
 function render() {
-  console.log("Render called");
   updateCheckedBoardUi();
   if (winner && winner.tie) {
     updateModalTiesUi();
@@ -159,11 +154,6 @@ function render() {
 }
 
 function updateWinnerBoardUi() {
-  console.log(`Found winner: `, winner);
-  console.log(winner.cells);
-  console.log(winner.mark);
-  console.log(`It was a tie: ${winner.tie}`);
-
   let imgPath =
     winner.mark === "x"
       ? "./assets/icon-x-winner.svg"
@@ -180,9 +170,13 @@ function updateModalWinnerUi() {
   mainEl.classList.add("modal--on");
   mainEl.classList.add("modal--winner");
 
-  document
-    .getElementById("modalWinner")
-    .classList.add(`modal--wins-${winner.mark}`);
+  const modalWinnerEl = document.getElementById("modalWinner");
+  const modalWinnerTitleEl = document.getElementById("modalWinnerTitle");
+
+  const winnerPlayer = players.find((p) => p.mark === winner.mark);
+
+  modalWinnerEl.classList.add(`modal--wins-${winner.mark}`);
+  modalWinnerTitleEl.textContent = `PLAYER ${winnerPlayer.id} WINS!`;
 
   document.querySelector("img.modal__content__img").src =
     `./assets/icon-${winner.mark}.svg`;
@@ -206,7 +200,6 @@ function switchPlayer() {
 }
 
 function updateCheckedBoardUi() {
-  console.log(board);
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
       if (!board[i][j]) {
@@ -240,7 +233,6 @@ function updateHoverBoardUi() {
 }
 
 function updateTurnUi() {
-  console.log(turn);
   if (turn === TURN_X) {
     turnEl.classList.add("turn--x");
     turnEl.classList.remove("turn--o");
@@ -274,16 +266,6 @@ function initPlayerScoreLabels() {
 
   labelPlayerX.textContent = `P${playerX.id}`;
   labelPlayerO.textContent = `P${playerO.id}`;
-
-  const playerOneSelectedMark = getPlayerOneSelectedMark();
-
-  // if (playerOneSelectedMark === "x") {
-  //   labelPlayerX.textContent = "P1";
-  //   labelPlayerO.textContent = "P2";
-  // } else {
-  //   labelPlayerO.textContent = "P1";
-  //   labelPlayerX.textContent = "P2";
-  // }
 }
 
 function showRestartUi() {
@@ -405,7 +387,6 @@ function getPlayerOneSelectedMark() {
     'input[name="playerMark"]:checked',
   );
   if (!selectedRadio) {
-    console.log("Nothing selected");
     return;
   }
 
