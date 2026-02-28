@@ -1,10 +1,10 @@
 "use strict";
 
 import { initModalWinner, initModalTie, initModalRestart } from "./modals.js";
+import { updateTurnUi, updateScoreUi, TURN_X, TURN_O } from "./stats.js";
 
 const mainEl = document.querySelector("main");
 const gameEl = document.querySelector(".game");
-const turnEl = document.querySelector(".turn");
 
 const btnNewGamePlayerEl = document.getElementById("btnNewGamePlayer");
 
@@ -37,8 +37,6 @@ const board = [Array(3).fill(null), Array(3).fill(null), Array(3).fill(null)];
 const boardUi = [Array(3).fill(null), Array(3).fill(null), Array(3).fill(null)];
 
 const players = [playerX, playerO];
-const TURN_X = 0;
-const TURN_O = 1;
 
 let turn = TURN_X;
 let currentPlayer = players[turn];
@@ -135,8 +133,8 @@ function render() {
   }
 
   updateHoverBoardUi();
-  updateTurnUi();
-  updateScoreUi();
+  updateTurnUi(turn);
+  updateScoreUi(players, ties);
 }
 
 function updateGameStatusUi() {
@@ -220,27 +218,6 @@ function updateHoverBoardUi() {
       boardUi[i][j].src = currentPlayer.iconHover;
     }
   }
-}
-
-function updateTurnUi() {
-  if (turn === TURN_X) {
-    turnEl.classList.add("turn--x");
-    turnEl.classList.remove("turn--o");
-    return;
-  }
-
-  turnEl.classList.add("turn--o");
-  turnEl.classList.remove("turn--x");
-}
-
-function updateScoreUi() {
-  const scoreXEl = document.getElementById("scoreX");
-  const scoreOEl = document.getElementById("scoreO");
-  const tiesScoreEl = document.getElementById("ties");
-
-  scoreXEl.textContent = players.find((p) => p.mark === "x").score;
-  scoreOEl.textContent = players.find((p) => p.mark === "o").score;
-  tiesScoreEl.textContent = ties;
 }
 
 function initPlayerIds() {
