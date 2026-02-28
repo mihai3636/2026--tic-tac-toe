@@ -2,11 +2,10 @@
 
 import { initModalWinner, initModalTie, initModalRestart } from "./modals.js";
 import { updateTurnUi, updateScoreUi, TURN_X, TURN_O } from "./stats.js";
+import { initMenu } from "./menu.js";
 
 const mainEl = document.querySelector("main");
 const gameEl = document.querySelector(".game");
-
-const btnNewGamePlayerEl = document.getElementById("btnNewGamePlayer");
 
 const playerX = {
   id: 1,
@@ -41,6 +40,13 @@ const players = [playerX, playerO];
 let turn = TURN_X;
 let currentPlayer = players[turn];
 
+initMenu(function () {
+  initPlayerIds();
+  gameStatus = GAME_STATUS_ACTIVE;
+
+  render();
+});
+
 initModalWinner({
   onQuit: function () {
     resetState();
@@ -72,13 +78,6 @@ initModalRestart(function () {
 
 initBoardUi();
 render();
-
-btnNewGamePlayerEl.addEventListener("click", (ev) => {
-  initPlayerIds();
-  gameStatus = GAME_STATUS_ACTIVE;
-
-  render();
-});
 
 gameEl.addEventListener("click", (ev) => {
   const cellEl = ev.target.closest(".cell");
