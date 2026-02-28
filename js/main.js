@@ -89,6 +89,7 @@ initMenu({
     gameStatus = GAME_STATUS_ACTIVE;
     gameMode = GAME_MODE_PLAYER;
 
+    renderGameStatus();
     render();
   },
   onNewGameCpu: function () {
@@ -96,6 +97,7 @@ initMenu({
     gameStatus = GAME_STATUS_ACTIVE;
     gameMode = GAME_MODE_CPU;
 
+    renderGameStatus();
     render();
 
     if (currentPlayer.id === 2) {
@@ -107,7 +109,7 @@ initMenu({
 initModalWinner({
   onQuit: function () {
     resetState();
-    render();
+    renderGameStatus();
   },
 
   onNextRound: function () {
@@ -123,7 +125,7 @@ initModalWinner({
 initModalTie({
   onQuit: function () {
     resetState();
-    render();
+    renderGameStatus();
   },
 
   onNextRound: function () {
@@ -137,18 +139,19 @@ initModalTie({
 
 initModalRestart(function () {
   resetState();
-  render();
+  renderGameStatus();
 });
 
 render();
 
-function render() {
+function renderGameStatus() {
   updateGameStatusUi(gameStatus);
-  if (gameStatus === GAME_STATUS_MENU) {
-    return;
+  if (gameStatus === GAME_STATUS_ACTIVE) {
+    initPlayerScoreLabelsUi({ playerX, playerO });
   }
-  initPlayerScoreLabelsUi({ playerX, playerO });
+}
 
+function render() {
   updateCheckedBoardUi({ board, playerX, playerO });
   if (winner && winner.tie) {
     updateModalTiesUi();

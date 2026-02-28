@@ -28,6 +28,7 @@ export function computeNextBestMove(board, goal, currentMark, globalMark) {
     });
   }
 
+  // TODO: you might want to perform this comparison inside the for loop from above
   if (goal === GOAL_MAX) {
     return result.reduce(function (prev, current) {
       if (current.value > prev.value) return current;
