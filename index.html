@@ -26,6 +26,7 @@
   </head>
   <body>
     <main class="tp-3" data-state="game-inactive">
+      <h1 class="visually-hidden">Tic Tac Toe</h1>
       <section>
         <div class="overlay"></div>
 
@@ -242,18 +243,19 @@
               <div class="menu__pick-player flow-content">
                 <h2 class="tp-4">PICK PLAYER 1'S MARK</h2>
                 <fieldset class="toggle split">
+                  <legend class="visually-hidden">PICK PLAYER 1'S MARK</legend>
                   <label class="toggle__option">
                     <input
                       id="radioX"
                       type="radio"
                       name="playerMark"
                       value="x"
-                      aria-label="Play as X"
                     />
                     <div class="shape-x">
                       <div class="shape-x__bar"></div>
                       <div class="shape-x__bar"></div>
                     </div>
+                    <span class="visually-hidden">Play as X</span>
                   </label>
                   <label class="toggle__option">
                     <input
@@ -262,11 +264,11 @@
                       name="playerMark"
                       value="o"
                       checked="true"
-                      aria-label="Play as O"
                     />
                     <div class="shape-o">
                       <div class="shape-o__inner"></div>
                     </div>
+                    <span class="visually-hidden">Play as O</span>
                   </label>
                 </fieldset>
                 <p class="tp-5 tp-5--medium">Remember : X goes first</p>
