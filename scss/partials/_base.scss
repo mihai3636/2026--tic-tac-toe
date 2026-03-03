@@ -67,3 +67,8 @@ main[data-state="game-active"] {
     display: grid;
   }
 }
+
+button:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 3px;
+}

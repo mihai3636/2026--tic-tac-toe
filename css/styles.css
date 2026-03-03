@@ -214,6 +214,11 @@ main[data-state=game-active] article.game {
   display: grid;
 }
 
+button:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 3px;
+}
+
 .shape-x {
   display: inline-block;
   transform: rotateZ(45deg);
@@ -371,6 +376,11 @@ input[type=radio] {
 input[type=radio]:checked + div {
   --clr-shape: var(--clr-grey-5);
   --clr-shape-inner: var(--clr-grey-2);
+}
+
+.toggle__option:has(input[type=radio]:focus-visible) {
+  outline: 3px solid white;
+  outline-offset: -3px;
 }
 
 .overlay {

@@ -36,3 +36,8 @@ input[type="radio"]:checked + div {
   --clr-shape: var(--clr-grey-5);
   --clr-shape-inner: var(--clr-grey-2);
 }
+
+.toggle__option:has(input[type="radio"]:focus-visible) {
+  outline: 3px solid white;
+  outline-offset: -3px;
+}

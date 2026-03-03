@@ -56,6 +56,7 @@ export function initModalRestart(onRestart) {
 export function updateModalWinnerUi({ players, winner }) {
   mainEl.classList.add("modal--on");
   mainEl.classList.add("modal--winner");
+  document.querySelector(".container").setAttribute("inert", "");
 
   const modalWinnerEl = document.getElementById("modalWinner");
   const modalWinnerTitleEl = document.getElementById("modalWinnerTitle");
@@ -81,6 +82,8 @@ function hideModalsUi() {
       mainEl.classList.remove(className);
     }
   });
+
+  document.querySelector(".container").removeAttribute("inert");
 }
 
 function clearWinnerModalUi() {
