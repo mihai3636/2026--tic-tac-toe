@@ -29,7 +29,13 @@
       <section>
         <div class="overlay"></div>
 
-        <div id="modalWinner" class="modal modal--wins-x flow-content">
+        <div
+          id="modalWinner"
+          class="modal modal--wins-x flow-content"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modalWinnerTitle"
+        >
           <h2 id="modalWinnerTitle" class="modal__title tp-5">YOU WON!</h2>
           <div class="modal__content tp-2">
             <img
@@ -55,9 +61,12 @@
         <div
           id="modalTies"
           class="modal modal--two-rows modal--tied flow-content"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modalTiesTitle"
         >
           <div class="modal__content tp-2">
-            <span>ROUND TIED</span>
+            <span id="modalTiesTitle">ROUND TIED</span>
           </div>
           <div class="modal__footer">
             <button id="btnTieQuit" class="btn btn--neutral wrapper tp-4">
@@ -72,9 +81,12 @@
         <div
           id="modalRestart"
           class="modal modal--two-rows modal--restart flow-content"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modalRestartTitle"
         >
           <div class="modal__content tp-2">
-            <span>RESTART GAME?</span>
+            <span id="modalRestartTitle">RESTART GAME?</span>
           </div>
           <div class="modal__footer">
             <button id="btnRestartCancel" class="btn btn--neutral wrapper tp-4">
@@ -103,7 +115,11 @@
                 <span>TURN</span>
               </div>
             </div>
-            <button id="btnRestart" class="btn btn--icon wrapper">
+            <button
+              id="btnRestart"
+              class="btn btn--icon wrapper"
+              aria-label="Restart game"
+            >
               <div>
                 <img src="./assets/icon-restart.svg" alt="Restart" />
               </div>
